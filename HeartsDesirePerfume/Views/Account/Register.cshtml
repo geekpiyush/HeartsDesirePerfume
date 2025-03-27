@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+<style>
+    * {
+        box-sizing:border-box;
+    }
+    body
+    {
+        background-color:steelblue;
+        color:white;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        height:100vh;
+        overflow:hidden;
+        margin:0px;
+
+    }
+    .container
+    {
+    background-color:rgba(0,0,0,0.4);
+    padding:20px 20px;
+    width:400px;
+    border-radius:5px;
+    }
+    .container h1
+    {
+        text-align:center;
+        margin-bottom:30px;
+    }
+    .container a
+    {
+        text-decoration:none;
+        color:lightblue;
+    }
+    .btn
+    {
+        cursor:pointer;
+        display:inline-block;
+        width:100%;
+        background-color:lightblue;
+        padding:15px;
+        font-family:inherit;
+        font:16px;
+        border:0px;
+        border-radius:5px;
+    }
+    .btn:focus
+    {
+        outline:0;
+    }
+    .btn:active
+    {
+        transform:scale(0.98);
+    }
+    .text
+    {
+        margin-top:30px;
+    }
+    .form-control
+    {
+        position:relative;
+        margin: 10px 0px 20px;
+        width:300px;
+    }
+    .form-control input
+    {
+        background-color:transparent;
+        color:white;
+        border:0;
+        border-bottom: 2px white solid;
+        display:block;
+        width:100%;
+        padding:10px 0px;
+        font-size:12px;
+    }
+    .form-control input:focus,
+    .form-control input:valid
+    {
+        outline:0px;
+    }
+    .form-control label
+    {
+        position:absolute;
+        top:15px;
+        left:0;
+    }
+</style>
+
+<div class="container">
+    <h1>Register Form</h1>
+    <form>
+        <div class="form-control">
+            <input type="email" name="email" required />
+            <label >Email</label>
+     @*        <lable>
+                <span style="transition-delay:0ms">E</span>
+                <span style="transition-delay:50ms">m</span>
+                <span style="transition-delay:100ms">a</span>
+                <span style="transition-delay:150ms">i</span>
+                <span style="transition-delay:200ms">l</span>
+            </lable> *@
+        </div>
+        <div class="form-control">
+            <input type="text" name="name" required />
+            <label>First Name</label>
+        </div>
+        <div class="form-control">
+            <input type="password" name="email" required />
+            <label>Password</label>
+        </div>
+        <div class="form-control">
+            <input type="password" name="email" required />
+            <label>Confirm Password</label>
+        </div>
+
+        <button class="btn">Register</button>
+
+        <p class="text">Already registered ? <a href="#">Log in</a></p>
+    </form>
+</div>
+<script>
+    const labels = document.querySelectorAll('.form-control lable')
+
+
+</script>

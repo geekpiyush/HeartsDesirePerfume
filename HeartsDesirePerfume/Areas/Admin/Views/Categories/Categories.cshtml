@@ -1,0 +1,125 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Categories</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Category Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e1f5e1;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+            button.edit {
+                background-color: #4CAF50;
+            }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+        caption {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <caption>Product Categories</caption>
+        <thead>
+            <tr>
+                <th>Product Category ID</th>
+                <th>Product Category Title</th>
+                <th>Product Category Description</th>
+                <th>Edit Product Category</th>
+                <th>Delete Product Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Men Perfume</td>
+                <td>Men's Eau de Parfum.</td>
+                <td><button class="edit">Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Woman Perfume</td>
+                <td>Top Women's Perfumes.</td>
+                <td><button class="edit">Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Luxury Perfume</td>
+                <td>Luxury Fragrances for All</td>
+                <td><button class="edit">Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Skin Care</td>
+                <td>Premium Skin Care Collection</td>
+                <td><button class="edit">Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+</body>
+</html>
