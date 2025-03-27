@@ -17,6 +17,9 @@ namespace Entities.DB
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Products>().ToTable("Products");
+          
         }
+
+       
     }
 }
