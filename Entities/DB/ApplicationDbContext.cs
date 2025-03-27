@@ -10,6 +10,8 @@ namespace Entities.DB
     public class ApplicationDbContext : DbContext
 
     {
+
+
         public DbSet<Products> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

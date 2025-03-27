@@ -10,7 +10,6 @@ namespace Entities
 {
    public class Products
     {
-        [Key]
         public Guid ProductID { get; set; }
         public string? ProductName { get; set; }
         public double ProductPrice { get; set; }
