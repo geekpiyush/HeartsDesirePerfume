@@ -8,10 +8,10 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-builder.Services.AddDbContext<ApplicationDbContext>(optins=>
-{
-    optins.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-});
+//builder.Services.AddDbContext<ApplicationDbContext>(optins=>
+//{
+//    optins.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+//});
 
 
 // Configure the HTTP request pipeline.
