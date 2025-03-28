@@ -1,41 +1,147 @@
+.marquee-main {
+  text-align: center;
+  background-color: red;
+  width: 100%;
+}
 
-  .carousel-container {
-    width: 100%;
-    /* max-width: 600px; */
-    position: relative;
-    overflow: hidden;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
+.marq {
+  padding: 5px 0px;
+}
+
+.Hearts {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: #0000000f;
+  color: #fff;
+  text-align: center;
+}
+
+/* ✅ Top Header Layout */
+.top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: transparent;
+  position: relative;
+}
+
+/* 🔍 Search Bar */
+.search-box {
+  flex: 1;
+  max-width: 250px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* 🏷 Logo (Centered) */
+.logo {
+  max-width: 150px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Icons (Right) */
+.icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* 🍔 Menu Icon (Left) */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 📌 Navigation Menu */
+.nav-menu {
+  background: transparent;
+  padding: 10px 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.nav-menu ul li {
+  display: inline;
+}
+
+.nav-menu ul li a {
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.nav-menu ul li a:hover {
+  color: #f4b400;
+}
+
+/* ✅ Mobile View */
+@media (max-width: 768px) {
+  .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
   }
-  .carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+
+  /* 🔍 Hide Search Bar */
+  .search-box {
+      display: none;
   }
-  .carousel-item {
-    min-width: 100%;
-    flex-shrink: 0;
-    font-size: 1.2rem;
+
+  /* 📱 Mobile Layout - Menu Left, Logo Center, Cart Right */
+  .menu-toggle {
+      display: block;
   }
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: black;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 24px;
-    background: none;
+
+  .logo {
+      position: static;
+      transform: none;
   }
-  .arrow-left {
-    left: 10px;
+
+  .icons {
+      display: flex;
+      gap: 15px;
   }
-  .arrow-right {
-    right: 10px;
+
+  /* Hide User Icon on Mobile */
+  .user-icon {
+      display: none;
   }
-  .arrow:hover {
-    color: #007bff;
+
+  /* 📜 Responsive Navigation Menu */
+  .nav-menu ul {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      padding: 10px 0;
   }
+
+  .nav-menu ul.show {
+      display: flex;
+  }
+}
