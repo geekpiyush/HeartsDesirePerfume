@@ -1,6 +1,9 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using ServiceContracts;
 using ServiceContracts.DTO;
+using Services.Helpers;
+using System.ComponentModel.DataAnnotations;
 
 namespace Services
 {
@@ -18,15 +21,7 @@ namespace Services
                 throw new ArgumentNullException(nameof(productAddRequest));
             }
 
-            if(productAddRequest.ProductName == null)
-            {
-                throw new ArgumentException(nameof(productAddRequest.ProductName));
-            }
-
-            if(_products.Where(temp => temp.ProductName == productAddRequest.ProductName).Count()>0)
-            {
-                throw new ArgumentException("Duplicate Product Name");
-            }
+            ValidationHelper.ModelValidation(productAddRequest);
 
            Products products = productAddRequest.ToProducts();
 
@@ -40,6 +35,21 @@ namespace Services
         public List<ProductResponse> GetAllProducts()
         {
           return _products.Select(temp => temp.ToProductResponse()).ToList(); 
+        }
+
+        public ProductResponse GetProductByProductID(Guid? personID)
+        {
+            if(personID == null)
+            {
+                return null;
+            }
+           Products? products =  _products.FirstOrDefault(temp => temp.ProductID == personID);
+
+            if(products == null)
+            {
+                return null;
+            }
+            return products.ToProductResponse();
         }
     }
 }

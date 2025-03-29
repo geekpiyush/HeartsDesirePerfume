@@ -7,5 +7,7 @@ namespace ServiceContracts
         ProductResponse AddProduct(ProductAddRequest? productAddRequest);
 
         List<ProductResponse> GetAllProducts();
+
+        ProductResponse GetProductByProductID(Guid? personID);
     }
 }
