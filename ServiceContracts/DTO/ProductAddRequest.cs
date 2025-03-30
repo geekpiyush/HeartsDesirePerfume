@@ -10,7 +10,7 @@ namespace ServiceContracts.DTO
     public class ProductAddRequest
     {
         [Required(ErrorMessage ="ProductID can't be blank")]
-       public Guid ProductID { get; set; }
+       public Guid? ProductID { get; set; }
 
         [Required(ErrorMessage = "Product Name can't be blank")]
         public string? ProductName { get; set; }
@@ -21,6 +21,12 @@ namespace ServiceContracts.DTO
         [Required(ErrorMessage = "Product Sale Price can't be blank")]
         public double? ProductSalePrice { get; set; }
 
+        [Required(ErrorMessage = "Product Short Description can't be blank")]
+        public string? ShortDescription { get; set; }
+
+        [Required(ErrorMessage = "Product Description can't be blank")]
+        public string? Description { get; set; }
+
         [Required(ErrorMessage = "Product Stock can't be blank")]
         public int Stock { get; set; }
 
@@ -29,7 +35,7 @@ namespace ServiceContracts.DTO
 
         public Products ToProducts()
         {
-            return new Products() { ProductID = ProductID, ProductName = ProductName, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock };
+            return new Products() { ProductID = ProductID, ProductName = ProductName, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock,Description = Description,ShortDescription = ShortDescription };
         }
 
     }

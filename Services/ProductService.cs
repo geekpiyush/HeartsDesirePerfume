@@ -32,6 +32,8 @@ namespace Services
             return products.ToProductResponse();
         }
 
+      
+
         public List<ProductResponse> GetAllProducts()
         {
           return _products.Select(temp => temp.ToProductResponse()).ToList(); 
@@ -50,6 +52,52 @@ namespace Services
                 return null;
             }
             return products.ToProductResponse();
+        }
+
+        public ProductResponse UpdateProduct(ProductUpdateRequest? productUpdateRequest)
+        {
+            if(productUpdateRequest == null)
+            {
+                return null;
+            }
+
+            ValidationHelper.ModelValidation(productUpdateRequest);
+
+            Products? matchingProducts = _products.FirstOrDefault(temp => temp.ProductID == productUpdateRequest.ProductID);
+
+            if(matchingProducts == null)
+            {
+                throw new ArgumentException("Given ID doesn't exist");
+            }
+
+            //Update Product Details
+            matchingProducts.ProductPrice = productUpdateRequest.ProductPrice;
+            matchingProducts.ProductSalePrice = productUpdateRequest.ProductSalePrice;
+            matchingProducts.SkuID = productUpdateRequest.SkuID;
+            matchingProducts.Stock = productUpdateRequest.Stock;
+
+
+            return matchingProducts.ToProductResponse();
+        }
+
+        public bool DeleteProduct(Guid? productID)
+        {
+            if(productID == null)
+            {
+                throw new ArgumentNullException(nameof(productID));
+            }
+
+            Products? product = _products.FirstOrDefault(temp => temp.ProductID == productID);
+
+            if(product == null)
+            {
+                return false;
+            }
+
+            _products.RemoveAll(temp => temp.ProductID == productID);
+
+            return true;
+
         }
     }
 }

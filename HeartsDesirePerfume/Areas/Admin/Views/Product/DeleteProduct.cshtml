@@ -1,0 +1,39 @@
+@model ProductResponse
+{
+    ViewBag.Title = "Delete Product";
+}
+@* <link href="@Url.Content("~/Areas/Admin/css/addproductstyle.css")" rel="stylesheet" type="text/css" /> *@
+<link href="~/css/AdminCSS/addproductstyle.css" rel="stylesheet" />
+<div class="form-container">
+    @* <h2>Add Product</h2> *@
+    <form asp-controller="Product" asp-area="Admin" asp-action="DeleteProduct" method="post" enctype="multipart/form-data">
+
+        
+        <input type="hidden" asp-for="ProductID" />
+
+        <label asp-for="ProductName">Product Name</label> 
+        <input type="text" asp-for="ProductName" disabled="disabled">
+        <span asp-validation-for="ProductName"></span>
+
+        <button type="submit">Delete</button>
+        <div asp-validation-summary="All" style="color:red;">
+
+        </div>
+
+        @if (ViewBag.errors != null)
+        {
+            <div class="" style="color:red;">
+                @foreach (string erros in ViewBag.errors)
+                {
+                    <li>@erros</li>
+                }
+            </div>
+        }
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
