@@ -157,6 +157,9 @@ header {
   z-index: 10;
   padding: 15px 0;
 }
+.transparent-navbar:hover{
+  background-color: rgba(245, 245, 245, 0.54);
+}
 
 /* 🎬 Video Banner */
 .video-banner {
