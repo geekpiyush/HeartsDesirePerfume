@@ -1,10 +1,15 @@
 using Entities.DB;
 using Microsoft.EntityFrameworkCore;
+using ServiceContracts;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//IOC Container
+builder.Services.AddScoped<IProductServices, ProductService>();
 
 var app = builder.Build();
 
