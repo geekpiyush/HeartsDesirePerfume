@@ -49,10 +49,10 @@
         <span asp-validation-for="ProductID"></span>
 
         <label for="mainImage">Product Main Image</label>
-        <input type="file" id="mainImage" name="mainImage" accept="image/*" required>
+        <input type="file"asp-for="MainImage" accept="image/*" required>
 
         <label for="referenceImages">Product Reference Images</label>
-        <input type="file" id="referenceImages" name="referenceImages[]" accept="image/*" multiple>
+        <input type="file" asp-for="ReferenceImages" accept="image/*" multiple>
 
         <button type="submit">Submit</button>
         <div asp-validation-summary="All" style="color:red;">

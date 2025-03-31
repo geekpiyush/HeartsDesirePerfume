@@ -1,4 +1,6 @@
 ﻿using Entities;
+using Entities.DB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -9,34 +11,128 @@ namespace Services
 {
     public class ProductService : IProductServices
     {
-        private readonly List<Products> _products;
-        public ProductService()
+        //private readonly List<Products> _products;
+        private readonly ApplicationDbContext _db;
+        public ProductService( ApplicationDbContext applicationDbContext)
         {
-            _products = new List<Products>();
+            //_products = new List<Products>();
+            _db = applicationDbContext;
         }
+
+        //public ProductResponse AddProduct(ProductAddRequest? productAddRequest)
+        //{
+        //    if (productAddRequest == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(productAddRequest));
+        //    }
+
+        //    ValidationHelper.ModelValidation(productAddRequest);
+
+        //    Products product = productAddRequest.ToProducts();
+
+        //    // Upload images
+        //    if (productAddRequest.MainImage != null)
+        //    {
+        //        string mainImagePath = SaveImage(productAddRequest.MainImage);
+        //        product.MainImagePath = mainImagePath;
+        //    }
+
+        //    if (productAddRequest.ReferenceImages != null && productAddRequest.ReferenceImages.Count > 0)
+        //    {
+        //        List<string> imagePaths = new List<string>();
+        //        foreach (var image in productAddRequest.ReferenceImages)
+        //        {
+        //            string path = SaveImage(image);
+        //            imagePaths.Add(path);
+        //        }
+        //        product.ReferenceImages = string.Join(",", imagePaths); // Store paths as comma-separated values
+        //    }
+
+        //    _db.Products.Add(product);
+        //    _db.SaveChanges();
+        //    return product.ToProductResponse();
+        //}
+
+        //// Helper method to save image and return path
+        //private string SaveImage(IFormFile image)
+        //{
+        //    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+
+        //    if (!Directory.Exists(uploadsFolder))
+        //    {
+        //        Directory.CreateDirectory(uploadsFolder);
+        //    }
+
+        //    string uniqueFileName = $"{Guid.NewGuid()}_{image.FileName}";
+        //    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        //    using (var stream = new FileStream(filePath, FileMode.Create))
+        //    {
+        //        image.CopyTo(stream);
+        //    }
+
+        //    return "/uploads/" + uniqueFileName; // Return relative path
+        //}
+
         public ProductResponse AddProduct(ProductAddRequest? productAddRequest)
         {
-            if(productAddRequest == null)
+            if (productAddRequest == null)
             {
                 throw new ArgumentNullException(nameof(productAddRequest));
             }
 
             ValidationHelper.ModelValidation(productAddRequest);
 
-           Products products = productAddRequest.ToProducts();
+            Products product = productAddRequest.ToProducts();
 
-            //products.ProductID = Guid.NewGuid();
+            // Save Main Image in "MainImages" folder
+            if (productAddRequest.MainImage != null)
+            {
+                string mainImagePath = SaveImage(productAddRequest.MainImage, "MainImages");
+                product.MainImagePath = mainImagePath;
+            }
 
-            _products.Add(products);
+            // Save Reference Images in "ReferenceImages" folder
+            if (productAddRequest.ReferenceImages != null && productAddRequest.ReferenceImages.Count > 0)
+            {
+                List<string> imagePaths = new List<string>();
+                foreach (var image in productAddRequest.ReferenceImages)
+                {
+                    string path = SaveImage(image, "ReferenceImages");
+                    imagePaths.Add(path);
+                }
 
-            return products.ToProductResponse();
+                product.ReferenceImages = string.Join("\n", imagePaths); 
+            }
+
+            _db.Products.Add(product);
+            _db.SaveChanges();
+            return product.ToProductResponse();
         }
 
-      
+        private string SaveImage(IFormFile image, string folderName)
+        {
+            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/uploads/{folderName}");
+
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            string uniqueFileName = $"{Guid.NewGuid()}_{image.FileName}";
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                image.CopyTo(stream);
+            }
+
+            return $"/uploads/{folderName}/{uniqueFileName}"; 
+        }
 
         public List<ProductResponse> GetAllProducts()
         {
-          return _products.Select(temp => temp.ToProductResponse()).ToList(); 
+          return _db.Products.Select(temp => temp.ToProductResponse()).ToList(); 
         }
 
         public ProductResponse GetProductByProductID(int? personID)
@@ -45,7 +141,7 @@ namespace Services
             {
                 return null;
             }
-           Products? products =  _products.FirstOrDefault(temp => temp.ProductID == personID);
+           Products? products =  _db.Products.FirstOrDefault(temp => temp.ProductID == personID);
 
             if(products == null)
             {
@@ -63,7 +159,7 @@ namespace Services
 
             ValidationHelper.ModelValidation(productUpdateRequest);
 
-            Products? matchingProducts = _products.FirstOrDefault(temp => temp.ProductID == productUpdateRequest.ProductID);
+            Products? matchingProducts = _db.Products.FirstOrDefault(temp => temp.ProductID == productUpdateRequest.ProductID);
 
             if(matchingProducts == null)
             {
@@ -76,7 +172,7 @@ namespace Services
             matchingProducts.SkuID = productUpdateRequest.SkuID;
             matchingProducts.Stock = productUpdateRequest.Stock;
 
-
+            _db.SaveChanges();
             return matchingProducts.ToProductResponse();
         }
 
@@ -87,14 +183,15 @@ namespace Services
                 throw new ArgumentNullException(nameof(productID));
             }
 
-            Products? product = _products.FirstOrDefault(temp => temp.ProductID == productID);
+            Products? product = _db.Products.FirstOrDefault(temp => temp.ProductID == productID);
 
             if(product == null)
             {
                 return false;
             }
 
-            _products.RemoveAll(temp => temp.ProductID == productID);
+            _db.Products.Remove(_db.Products.First( temp => temp.ProductID == productID));
+            _db.SaveChanges();
 
             return true;
 

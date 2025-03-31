@@ -19,8 +19,10 @@ namespace ServiceContracts.DTO
         public int Stock { get; set; }
         public string? SkuID { get; set; }
 
+        public string? MainImagePath { get; set; } 
+        public List<string>? ReferenceImagePaths { get; set; }
 
-       public ProductUpdateRequest ToProductUpdateRequest()
+        public ProductUpdateRequest ToProductUpdateRequest()
         {
             return new ProductUpdateRequest() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock};
         }
@@ -29,7 +31,11 @@ namespace ServiceContracts.DTO
     {
         public static ProductResponse ToProductResponse(this Products products)
         {
-            return new ProductResponse() { ProductID = products.ProductID, ProductName = products.ProductName, ProductPrice = products.ProductPrice, ProductSalePrice = products.ProductSalePrice, SkuID = products.SkuID, Stock = products.Stock, Description = products.Description, ShortDescription = products.ShortDescription };
+            return new ProductResponse() { ProductID = products.ProductID, ProductName = products.ProductName, ProductPrice = products.ProductPrice, ProductSalePrice = products.ProductSalePrice, SkuID = products.SkuID, Stock = products.Stock, Description = products.Description, ShortDescription = products.ShortDescription,MainImagePath = products.MainImagePath,
+                ReferenceImagePaths = string.IsNullOrEmpty(products.ReferenceImages)
+                ? new List<string>()
+                : products.ReferenceImages.Split('\n').ToList()
+            };
         }
     }
 }

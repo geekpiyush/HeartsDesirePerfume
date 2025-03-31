@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using Microsoft.AspNetCore.Http;
 namespace ServiceContracts.DTO
 {
     public class ProductAddRequest
     {
-        [Required(ErrorMessage ="ProductID can't be blank")]
+        //[Required(ErrorMessage ="ProductID can't be blank")]
        public int? ProductID { get; set; }
 
         [Required(ErrorMessage = "Product Name can't be blank")]
@@ -32,6 +33,9 @@ namespace ServiceContracts.DTO
 
         [Required(ErrorMessage = "Product SKUID can't be blank")]
         public string? SkuID { get; set; }
+
+        public IFormFile? MainImage { get; set; }
+        public List<IFormFile>? ReferenceImages { get; set; }
 
         public Products ToProducts()
         {

@@ -26,6 +26,8 @@ namespace Entities
 
         public int Stock { get; set; }
         public string? SkuID { get; set; }
+        public string? MainImagePath { get; set; }
+        public string? ReferenceImages { get; set; }
 
     }
 }

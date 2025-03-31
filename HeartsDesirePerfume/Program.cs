@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //IOC Container
-builder.Services.AddSingleton<IProductServices, ProductService>();
+builder.Services.AddScoped<IProductServices, ProductService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
