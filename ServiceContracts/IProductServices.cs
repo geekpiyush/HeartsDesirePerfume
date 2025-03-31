@@ -8,9 +8,9 @@ namespace ServiceContracts
 
         List<ProductResponse> GetAllProducts();
 
-        ProductResponse GetProductByProductID(Guid? personID);
+        ProductResponse GetProductByProductID(int? personID);
         ProductResponse UpdateProduct(ProductUpdateRequest? productUpdateRequest);
 
-       bool DeleteProduct(Guid? productID);
+       bool DeleteProduct(int? productID);
     }
 }

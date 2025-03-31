@@ -10,11 +10,18 @@ namespace Entities
 {
    public class Products
     {
-        public Guid? ProductID { get; set; }
+        [Key]
+        public int? ProductID { get; set; }
+
+        [StringLength(100)]
         public string? ProductName { get; set; }
         public double ProductPrice { get; set; }
         public double? ProductSalePrice { get; set; }
+
+        [StringLength(255)]
         public string? ShortDescription { get; set; }
+
+        [StringLength(255)]
         public string? Description { get; set; }
 
         public int Stock { get; set; }

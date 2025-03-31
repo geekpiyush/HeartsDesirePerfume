@@ -25,7 +25,7 @@ namespace Services
 
            Products products = productAddRequest.ToProducts();
 
-            products.ProductID = Guid.NewGuid();
+            //products.ProductID = Guid.NewGuid();
 
             _products.Add(products);
 
@@ -39,7 +39,7 @@ namespace Services
           return _products.Select(temp => temp.ToProductResponse()).ToList(); 
         }
 
-        public ProductResponse GetProductByProductID(Guid? personID)
+        public ProductResponse GetProductByProductID(int? personID)
         {
             if(personID == null)
             {
@@ -80,7 +80,7 @@ namespace Services
             return matchingProducts.ToProductResponse();
         }
 
-        public bool DeleteProduct(Guid? productID)
+        public bool DeleteProduct(int? productID)
         {
             if(productID == null)
             {

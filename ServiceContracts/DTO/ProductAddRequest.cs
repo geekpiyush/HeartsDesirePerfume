@@ -10,7 +10,7 @@ namespace ServiceContracts.DTO
     public class ProductAddRequest
     {
         [Required(ErrorMessage ="ProductID can't be blank")]
-       public Guid? ProductID { get; set; }
+       public int? ProductID { get; set; }
 
         [Required(ErrorMessage = "Product Name can't be blank")]
         public string? ProductName { get; set; }

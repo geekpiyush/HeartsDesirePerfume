@@ -11,7 +11,7 @@ namespace ServiceContracts.DTO
     public class ProductUpdateRequest
     {
         [Required(ErrorMessage ="ProductID is required to update any product")]
-        public Guid? ProductID { get; set; }
+        public int? ProductID { get; set; }
         public double ProductPrice { get; set; }
         public double? ProductSalePrice { get; set; }
         public int Stock { get; set; }

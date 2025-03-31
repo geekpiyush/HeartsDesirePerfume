@@ -45,7 +45,7 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("[action]/{productID}")]
-        public IActionResult EditProduct(Guid productID)
+        public IActionResult EditProduct(int productID)
         {
             ProductResponse productResponse = _productService.GetProductByProductID(productID);
             
@@ -88,7 +88,7 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("[action]/{productID}")]
-        public IActionResult DeleteProduct(Guid? productID)
+        public IActionResult DeleteProduct(int? productID)
         {
             ProductResponse productResponse = _productService.GetProductByProductID(productID);
 

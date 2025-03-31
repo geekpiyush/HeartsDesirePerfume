@@ -9,7 +9,7 @@ namespace ServiceContracts.DTO
 {
    public class ProductResponse
     {
-        public Guid? ProductID { get; set; }
+        public int? ProductID { get; set; }
         public string? ProductName { get; set; }
         public double ProductPrice { get; set; }
         public double? ProductSalePrice { get; set; }
