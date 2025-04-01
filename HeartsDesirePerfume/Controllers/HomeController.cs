@@ -1,32 +1,27 @@
 using HeartsDesireLuxury.Models;
 using Microsoft.AspNetCore.Mvc;
+using ServiceContracts;
+using ServiceContracts.DTO;
+using Services;
 using System.Diagnostics;
 
 namespace HeartsDesireLuxury.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductServices _productServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController( IProductServices productService)
         {
-            _logger = logger;
+            _productServices = productService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<ProductResponse> products = _productServices.GetAllProducts();
+
+            return View(products);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
