@@ -11,68 +11,13 @@ namespace Services
 {
     public class ProductService : IProductServices
     {
-        //private readonly List<Products> _products;
         private readonly ApplicationDbContext _db;
         public ProductService( ApplicationDbContext applicationDbContext)
         {
-            //_products = new List<Products>();
+            
             _db = applicationDbContext;
         }
 
-        //public ProductResponse AddProduct(ProductAddRequest? productAddRequest)
-        //{
-        //    if (productAddRequest == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(productAddRequest));
-        //    }
-
-        //    ValidationHelper.ModelValidation(productAddRequest);
-
-        //    Products product = productAddRequest.ToProducts();
-
-        //    // Upload images
-        //    if (productAddRequest.MainImage != null)
-        //    {
-        //        string mainImagePath = SaveImage(productAddRequest.MainImage);
-        //        product.MainImagePath = mainImagePath;
-        //    }
-
-        //    if (productAddRequest.ReferenceImages != null && productAddRequest.ReferenceImages.Count > 0)
-        //    {
-        //        List<string> imagePaths = new List<string>();
-        //        foreach (var image in productAddRequest.ReferenceImages)
-        //        {
-        //            string path = SaveImage(image);
-        //            imagePaths.Add(path);
-        //        }
-        //        product.ReferenceImages = string.Join(",", imagePaths); // Store paths as comma-separated values
-        //    }
-
-        //    _db.Products.Add(product);
-        //    _db.SaveChanges();
-        //    return product.ToProductResponse();
-        //}
-
-        //// Helper method to save image and return path
-        //private string SaveImage(IFormFile image)
-        //{
-        //    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-
-        //    if (!Directory.Exists(uploadsFolder))
-        //    {
-        //        Directory.CreateDirectory(uploadsFolder);
-        //    }
-
-        //    string uniqueFileName = $"{Guid.NewGuid()}_{image.FileName}";
-        //    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-        //    using (var stream = new FileStream(filePath, FileMode.Create))
-        //    {
-        //        image.CopyTo(stream);
-        //    }
-
-        //    return "/uploads/" + uniqueFileName; // Return relative path
-        //}
 
         public ProductResponse AddProduct(ProductAddRequest? productAddRequest)
         {

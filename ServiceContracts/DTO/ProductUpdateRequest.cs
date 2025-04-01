@@ -17,7 +17,6 @@ namespace ServiceContracts.DTO
         public int Stock { get; set; }
         public string? SkuID { get; set; }
 
-
         public Products ToProduct()
         {
             return new Products() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, Stock = Stock, SkuID = SkuID };
