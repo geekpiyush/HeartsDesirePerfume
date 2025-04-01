@@ -107,32 +107,37 @@
 </div>
 
 
+
 <h1>Customer Area</h1>
 
 <script>
-    let index = 0;
-            const slides = document.querySelectorAll(".carousel-img");
-            const dots = document.querySelectorAll(".dot");
+        let index = 0;
+    const slides = document.querySelectorAll(".carousel-img");
+    const track = document.querySelector(".carousel-track");
+    const dots = document.querySelectorAll(".dot");
 
-            function updateCarousel() {
-                document.querySelector(".carousel-track").style.transform = `translateX(${-index * 100}%)`;
-                dots.forEach(dot => dot.classList.remove("active"));
-                dots[index].classList.add("active");
-            }
+    // ✅ Fix Track Width
+    track.style.width = `${slides.length * 100}vw`;
 
-            // Move to next or previous slide
-            function moveSlide(step) {
-                index = (index + step + slides.length) % slides.length;
-                updateCarousel();
-            }
+    function updateCarousel() {
+        track.style.transform = `translateX(${-index * 100}vw)`;
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[index].classList.add("active");
+    }
 
-            // Jump to a specific slide
-            function jumpToSlide(n) {
-                index = n;
-                updateCarousel();
-            }
+    // Move to next or previous slide
+    function moveSlide(step) {
+        index = (index + step + slides.length) % slides.length;
+        updateCarousel();
+    }
 
-            // Auto Slide Every 4 Seconds
-            setInterval(() => moveSlide(1), 4000);
+    // Jump to a specific slide
+    function jumpToSlide(n) {
+        index = n;
+        updateCarousel();
+    }
+
+    // Auto Slide Every 4 Seconds
+    setInterval(() => moveSlide(1), 4000);
 
 </script>

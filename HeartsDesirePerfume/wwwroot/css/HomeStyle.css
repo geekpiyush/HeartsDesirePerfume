@@ -393,26 +393,26 @@ header {
   color: white;
 }
 
-/* ✅ Full-Width Carousel with Fixed Height */
+/* ✅ Full-Width Carousel */
 .carousel {
     position: relative;
-    width: 100%;
-    max-width: 100%;
+    width: 100vw;
     height: 451px; /* Fixed height */
     overflow: hidden;
 }
 
-/* ✅ Track for Sliding Images */
+/* ✅ Track Fix: Full Width for All Images */
 .carousel-track {
     display: flex;
+    width: 300vw; /* 3 Images x 100vw */
     transition: transform 0.5s ease-in-out;
 }
 
-/* ✅ Images Full Width + Fixed Height */
+/* ✅ Image Full Width */
 .carousel-img {
-    width: 100%; /* Full width */
-    height: 451px; /* Fixed height */
-    object-fit: cover; /* Ensures proper fit */
+    width: 100vw; /* Full screen width */
+    height: 451px;
+    object-fit: cover;
 }
 
 /* ✅ Navigation Buttons */
@@ -463,10 +463,10 @@ header {
     background-color: black;
 }
 
-/* ✅ Mobile Responsive */
+/* ✅ Responsive Fix */
 @media (max-width: 768px) {
     .carousel {
-        height: 300px; /* Smaller height for mobile */
+        height: 300px;
     }
 
     .carousel-img {
