@@ -399,6 +399,7 @@ header {
     width: 100vw;
     height: 451px; /* Fixed height */
     overflow: hidden;
+    margin-top:70px;
 }
 
 /* ✅ Track Fix: Full Width for All Images */
