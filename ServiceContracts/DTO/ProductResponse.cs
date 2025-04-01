@@ -24,7 +24,7 @@ namespace ServiceContracts.DTO
 
         public ProductUpdateRequest ToProductUpdateRequest()
         {
-            return new ProductUpdateRequest() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock};
+            return new ProductUpdateRequest() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock,MainImagePath = MainImagePath,ReferenceImagePaths = ReferenceImagePaths};
         }
     }
     public static class ProductExtensions

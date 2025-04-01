@@ -16,11 +16,12 @@ namespace ServiceContracts.DTO
         public double? ProductSalePrice { get; set; }
         public int Stock { get; set; }
         public string? SkuID { get; set; }
-
+        public string? MainImagePath { get; set; }
+        public List<string>? ReferenceImagePaths { get; set; }
 
         public Products ToProduct()
         {
-            return new Products() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, Stock = Stock, SkuID = SkuID };
+            return new Products() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, Stock = Stock, SkuID = SkuID};
         }
     }
 }

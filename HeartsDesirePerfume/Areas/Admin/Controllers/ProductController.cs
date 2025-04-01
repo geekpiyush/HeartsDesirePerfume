@@ -43,6 +43,7 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
             return RedirectToAction("AllProduct","Product");
         }
 
+
         [HttpGet]
         [Route("[action]/{productID}")]
         public IActionResult EditProduct(int productID)

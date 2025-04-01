@@ -87,5 +87,52 @@
     </div>
 </section>
 
+<div class="carousel">
+    <div class="carousel-track">
+        <img src="~/images/banner1.jpeg" class="carousel-img" alt="Banner 1">
+        <img src="~/images/banner2.jpeg" class="carousel-img" alt="Banner 2">
+        <img src="~/images/banner1.jpeg" class="carousel-img" alt="Banner 3">
+    </div>
+
+    <!-- Arrows -->
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+
+    <!-- Indicators -->
+    <div class="carousel-dots">
+        <span class="dot active" onclick="jumpToSlide(0)"></span>
+        <span class="dot" onclick="jumpToSlide(1)"></span>
+        <span class="dot" onclick="jumpToSlide(2)"></span>
+    </div>
+</div>
+
 
 <h1>Customer Area</h1>
+
+<script>
+    let index = 0;
+            const slides = document.querySelectorAll(".carousel-img");
+            const dots = document.querySelectorAll(".dot");
+
+            function updateCarousel() {
+                document.querySelector(".carousel-track").style.transform = `translateX(${-index * 100}%)`;
+                dots.forEach(dot => dot.classList.remove("active"));
+                dots[index].classList.add("active");
+            }
+
+            // Move to next or previous slide
+            function moveSlide(step) {
+                index = (index + step + slides.length) % slides.length;
+                updateCarousel();
+            }
+
+            // Jump to a specific slide
+            function jumpToSlide(n) {
+                index = n;
+                updateCarousel();
+            }
+
+            // Auto Slide Every 4 Seconds
+            setInterval(() => moveSlide(1), 4000);
+
+</script>
