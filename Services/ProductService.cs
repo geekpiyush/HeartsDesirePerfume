@@ -116,6 +116,8 @@ namespace Services
             matchingProducts.ProductSalePrice = productUpdateRequest.ProductSalePrice;
             matchingProducts.SkuID = productUpdateRequest.SkuID;
             matchingProducts.Stock = productUpdateRequest.Stock;
+            matchingProducts.MainImagePath = productUpdateRequest.MainImagePath;
+            //matchingProducts.ReferenceImages = productUpdateRequest.ReferenceImagePaths;
 
             _db.SaveChanges();
             return matchingProducts.ToProductResponse();
