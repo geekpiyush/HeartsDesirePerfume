@@ -474,3 +474,31 @@ header {
         height: 300px;
     }
 }
+.transparent-navbar {
+    background: rgba(255, 255, 255, 0.1); /* Initially transparent */
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+    /* When hovered, change to white background and black text */
+    .transparent-navbar:hover {
+        background: white;
+    }
+
+        /* Change text color when hovered */
+        .transparent-navbar:hover .nav-menu ul li a,
+        .transparent-navbar:hover .icons span,
+        .transparent-navbar:hover .search-box {
+            color: black !important;
+        }
+
+/* Default text color */
+.nav-menu ul li a {
+    color: white; /* Default */
+    transition: color 0.3s ease-in-out;
+}
+
+.icons span,
+.search-box {
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
