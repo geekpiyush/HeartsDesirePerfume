@@ -3,16 +3,13 @@
 }
 <!-- 📽️ Video Banner -->
 <section class="video-banner">
-    <video autoplay loop muted playsinline class="background-video">
-        <source src="~/Videos/bannermodelvideo.mp4" type="video/mp4">
+    <video id="banner-video" autoplay loop muted playsinline class="background-video">
+        <source id="video-source" src="~/Videos/bannermodelvideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    @* <div class="video-overlay">
-        <h1>Experience Luxury Perfumes</h1>
-        <p>Discover the finest scents crafted just for you</p>
-        <a href="#" class="shop-now-btn">Shop Now</a>
-    </div> *@
 </section>
+
+
 
 <section class="products-section">
     <div class="container">
@@ -140,4 +137,29 @@
     // Auto Slide Every 4 Seconds
     setInterval(() => moveSlide(1), 4000);
 
+
+       document.addEventListener("DOMContentLoaded", function () {
+        const videoSources = [
+            "/Videos/bannermodelvideo.mp4",
+            "/Videos/video2.mp4"
+            
+        ];
+
+        let videoIndex = 0;
+        const videoElement = document.getElementById("banner-video");
+        const videoSourceElement = document.getElementById("video-source");
+
+        function changeVideo() {
+            videoIndex = (videoIndex + 1) % videoSources.length;
+            videoSourceElement.src = videoSources[videoIndex];
+            videoElement.load();  // Reload the new video source
+            videoElement.play();
+        }
+
+        // Ensure the video plays and loops correctly
+        videoElement.addEventListener("ended", changeVideo);
+
+        // Start changing video every 10 seconds
+        setInterval(changeVideo, 10000);
+    });
 </script>
