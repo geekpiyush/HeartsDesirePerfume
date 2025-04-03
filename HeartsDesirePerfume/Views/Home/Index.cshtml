@@ -86,7 +86,7 @@
 
 <div class="carousel">
     <div class="carousel-track">
-        <img src="~/images/b-1.png" class="carousel-img" alt="Banner 1">
+        <img src="~/images/luxury.png" class="carousel-img" alt="Banner 1">
         <img src="~/images/b-2.png" class="carousel-img" alt="Banner 2">
         <img src="~/images/banner3.png" class="carousel-img" alt="Banner 3">
     </div>
@@ -141,7 +141,7 @@
        document.addEventListener("DOMContentLoaded", function () {
         const videoSources = [
             "/Videos/bannermodelvideo.mp4",
-            "/Videos/video2.mp4",
+            "/Videos/video2.mp4"
             
         ];
 
@@ -156,10 +156,9 @@
             videoElement.play();
         }
 
-        // Ensure the video plays and loops correctly
+       
         videoElement.addEventListener("ended", changeVideo);
 
-        // Start changing video every 10 seconds
-        setInterval(changeVideo, 10000);
+        setInterval(changeVideo, 20000);
     });
 </script>

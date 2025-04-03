@@ -411,7 +411,7 @@ header {
 
 /* ✅ Image Full Width */
 .carousel-img {
-    width: 100vw; /* Full screen width */
+    width: 100vw;  /*Full screen width */
     height: 451px;
     object-fit: cover;
 }
