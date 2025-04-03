@@ -1,0 +1,6 @@
+@HeartsDesireAPI_HostAddress = http://localhost:5087
+
+GET {{HeartsDesireAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
