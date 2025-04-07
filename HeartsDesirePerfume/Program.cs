@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 
 //IOC Container
 builder.Services.AddScoped<IProductServices, ProductService>();
+builder.Services.AddScoped<IProductCategoryService, ProductCategoryServices>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

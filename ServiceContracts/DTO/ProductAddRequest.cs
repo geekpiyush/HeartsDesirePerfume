@@ -37,9 +37,10 @@ namespace ServiceContracts.DTO
         public IFormFile? MainImage { get; set; }
         public List<IFormFile>? ReferenceImages { get; set; }
 
+        public int? CategoryID { get; set; }
         public Products ToProducts()
         {
-            return new Products() { ProductID = ProductID, ProductName = ProductName, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock,Description = Description,ShortDescription = ShortDescription };
+            return new Products() { ProductID = ProductID, ProductName = ProductName, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock,Description = Description,ShortDescription = ShortDescription ,CategoryID = CategoryID};
         }
 
     }

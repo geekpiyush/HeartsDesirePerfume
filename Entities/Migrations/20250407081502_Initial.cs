@@ -11,6 +11,19 @@ namespace Entities.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ProductCategories",
+                columns: table => new
+                {
+                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCategories", x => x.CategoryID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -22,22 +35,23 @@ namespace Entities.Migrations
                     ShortDescription = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
-                    SkuID = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SkuID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MainImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReferenceImages = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductID);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "ProductID", "Description", "ProductName", "ProductPrice", "ProductSalePrice", "ShortDescription", "SkuID", "Stock" },
-                values: new object[] { 1001, "Test Description", "TestProduct", 999.0, 699.0, "TestProduct Short Description", "Test100ML", 100 });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ProductCategories");
+
             migrationBuilder.DropTable(
                 name: "Products");
         }

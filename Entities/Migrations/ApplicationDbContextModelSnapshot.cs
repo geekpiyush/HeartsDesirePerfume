@@ -45,6 +45,9 @@ namespace Entities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductID"));
 
+                    b.Property<int?>("CategoryID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -78,19 +81,6 @@ namespace Entities.Migrations
                     b.HasKey("ProductID");
 
                     b.ToTable("Products", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ProductID = 1001,
-                            Description = "Test Description",
-                            ProductName = "TestProduct",
-                            ProductPrice = 999.0,
-                            ProductSalePrice = 699.0,
-                            ShortDescription = "TestProduct Short Description",
-                            SkuID = "Test100ML",
-                            Stock = 100
-                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -21,17 +21,18 @@ namespace ServiceContracts.DTO
 
         public string? MainImagePath { get; set; } 
         public List<string>? ReferenceImagePaths { get; set; }
-
+        public int? CategoryID { get; set; }
+        public string? Category { get; set; }
         public ProductUpdateRequest ToProductUpdateRequest()
         {
-            return new ProductUpdateRequest() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock,MainImagePath = MainImagePath,ReferenceImagePaths = ReferenceImagePaths};
+            return new ProductUpdateRequest() { ProductID = ProductID, ProductPrice = ProductPrice, ProductSalePrice = ProductSalePrice, SkuID = SkuID, Stock = Stock,MainImagePath = MainImagePath,ReferenceImagePaths = ReferenceImagePaths,CategoryID = CategoryID};
         }
     }
     public static class ProductExtensions
     {
         public static ProductResponse ToProductResponse(this Products products)
         {
-            return new ProductResponse() { ProductID = products.ProductID, ProductName = products.ProductName, ProductPrice = products.ProductPrice, ProductSalePrice = products.ProductSalePrice, SkuID = products.SkuID, Stock = products.Stock, Description = products.Description, ShortDescription = products.ShortDescription,MainImagePath = products.MainImagePath,
+            return new ProductResponse() { ProductID = products.ProductID, ProductName = products.ProductName, ProductPrice = products.ProductPrice, ProductSalePrice = products.ProductSalePrice, SkuID = products.SkuID, Stock = products.Stock, Description = products.Description, ShortDescription = products.ShortDescription,CategoryID = products.CategoryID,MainImagePath = products.MainImagePath,
                 ReferenceImagePaths = string.IsNullOrEmpty(products.ReferenceImages)
                 ? new List<string>()
                 : products.ReferenceImages.Split('\n').ToList()

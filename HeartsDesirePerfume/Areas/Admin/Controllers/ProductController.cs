@@ -9,9 +9,11 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IProductServices _productService;
-        public ProductController(IProductServices productServices)
+        private readonly IProductCategoryService _productCategoryService;
+        public ProductController(IProductServices productServices, IProductCategoryService productCategoryService)
         {
             _productService = productServices;
+            _productCategoryService = productCategoryService;
         }
         public IActionResult AllProduct()
         {
@@ -24,6 +26,9 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
         [HttpGet]
           public IActionResult AddProduct()
         {
+            List<ProductCategoryResponse> productCategoryResponses = _productCategoryService.GetAllCategory();
+
+            ViewBag.ProductCategory = productCategoryResponses;
 
             return View();
         }

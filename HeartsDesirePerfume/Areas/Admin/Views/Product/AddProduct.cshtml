@@ -2,69 +2,65 @@
 @{
     ViewBag.Title = "Add Product";
 }
-@* <link href="@Url.Content("~/Areas/Admin/css/addproductstyle.css")" rel="stylesheet" type="text/css" /> *@
 <link href="~/css/AdminCSS/addproductstyle.css" rel="stylesheet" />
 <div class="form-container">
-    @* <h2>Add Product</h2> *@
     <form asp-controller="Product" asp-area="Admin" asp-action="Addproduct" method="POST" enctype="multipart/form-data">
+
+        <div asp-validation-summary="All" style="color:red;"></div>
+
         <label asp-for="ProductName">Product Name</label>
-        <input type="text" asp-for="ProductName">
+        <input type="text" asp-for="ProductName" />
         <span asp-validation-for="ProductName" style="color:red;"></span>
 
         <label asp-for="ProductPrice">Product Price ($)</label>
-        <input type="number" asp-for="ProductPrice" step="0.01">
-        <span asp-validation-for="ProductPrice"></span>
+        <input type="number" asp-for="ProductPrice" step="0.01" />
+        <span asp-validation-for="ProductPrice" style="color:red;"></span>
 
         <label asp-for="ProductSalePrice">Product Sale Price ($)</label>
-        <input type="number" asp-for="ProductSalePrice" step="0.01">
-        <span asp-validation-for="ProductSalePrice"></span>
+        <input type="number" asp-for="ProductSalePrice" step="0.01" />
+        <span asp-validation-for="ProductSalePrice" style="color:red;"></span>
 
         <label asp-for="ShortDescription">Product Short Description</label>
         <textarea asp-for="ShortDescription" rows="4"></textarea>
-        <span asp-validation-for="ShortDescription"></span>
+        <span asp-validation-for="ShortDescription" style="color:red;"></span>
 
         <label asp-for="Description">Product Description</label>
         <textarea asp-for="Description" rows="6"></textarea>
-        <span asp-validation-for="Description"></span>
+        <span asp-validation-for="Description" style="color:red;"></span>
 
         <label for="category">Choose a Category:</label>
-
-        <select id="Category">
-            <option value="luxury_perfume">Luxury Perfume</option>
-            <option value="woman_perfume">Woman Perfume</option>
-            <option value="men_perfume">Men's Perfume</option>
-            <option value="skin_care">Skin Care</option>
+        <select id="Category" asp-for="CategoryID">
+            <option value="">-- Select Category --</option>
+            @foreach (ProductCategoryResponse category in ViewBag.ProductCategory)
+            {
+                <option value="@category.CategoryID">@category.CategoryName</option>
+            }
         </select>
 
+        <span asp-validation-for="CategoryID" style="color:red;"></span>
+
         <label asp-for="Stock">Stock</label>
-        <input type="number" asp-for="Stock">
-        <span asp-validation-for="Stock"></span>
+        <input type="number" asp-for="Stock" />
+        <span asp-validation-for="Stock" style="color:red;"></span>
 
         <label asp-for="SkuID">SKU ID</label>
-        <input type="text" asp-for="SkuID">
-        <span asp-validation-for="SkuID"></span>
-
-        @* <label asp-for="ProductID">Product ID</label>
-        <input type="text" asp-for="ProductID">
-        <span asp-validation-for="ProductID"></span> *@
+        <input type="text" asp-for="SkuID" />
+        <span asp-validation-for="SkuID" style="color:red;"></span>
 
         <label for="mainImage">Product Main Image</label>
-        <input type="file"asp-for="MainImage" accept="image/*" required>
+        <input type="file" asp-for="MainImage" accept="image/*" required />
 
         <label for="referenceImages">Product Reference Images</label>
-        <input type="file" asp-for="ReferenceImages" accept="image/*" multiple>
+        <input type="file" asp-for="ReferenceImages" accept="image/*" multiple />
 
         <button type="submit">Submit</button>
-        <div asp-validation-summary="All" style="color:red;">
-
-        </div>
 
         @if (ViewBag.errors != null)
         {
-            <div class="" style="color:red;">
-                @foreach (string erros in ViewBag.errors)
+            <div style="color:red;">
+                @foreach (string error in ViewBag.errors)
                 {
-                    <li>@erros</li>
+                    <li>@error</li>
                 }
             </div>
         }
@@ -72,7 +68,5 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
