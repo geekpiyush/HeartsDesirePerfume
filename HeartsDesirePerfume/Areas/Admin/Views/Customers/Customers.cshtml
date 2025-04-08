@@ -1,34 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Entities.IdentityEntity.ApplicationUser>
 @{
+    ViewBag.Title = "Customer List";
 }
 <link rel="stylesheet" href="~/css/AdminCSS/CustomerStyle.css">
     <table>
         <caption>Customer Sign-Up List</caption>
         <thead>
             <tr>
-                <th>S.No</th>
+                <th>CustomerID</th>
                 <th>Customer Name</th>
                 <th>Customer Email</th>
-                <th>Customer Image</th>
                 <th>Customer Country</th>
                 <th>Customer City</th>
                 <th>Customer Phone No</th>
-                <th>Delete</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
+        @foreach (var user in Model)
+        {
             <tr>
-                <td>1</td>
-                <td>Piyush Dubey</td>
-                <td>dpiyush@gmail.com</td>
-                <td><img src="https://via.placeholder.com/50" alt="Customer Image"></td>
-                <td>India</td>
-                <td>Yamuna Vihar</td>
-                <td>+91 9988568742</td>
-                <td><button>Delete</button></td>
+                <td>@user.Id</td>
+                <td>@user.CustomerName</td>
+                <td>@user.Email</td>
+                <td>India</td> @* not dynamic *@
+                <td>Yamuna Vihar</td> @* not dynamic *@
+                <td>@user.PhoneNumber</td>
+                <td>
+                    <Button>Delete</Button>
+                    <Button>Edit</Button>
+                    
+                </td>
             </tr>
+        }
         
         </tbody>
     </table>
