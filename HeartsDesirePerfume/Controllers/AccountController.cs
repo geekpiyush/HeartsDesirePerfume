@@ -18,6 +18,7 @@ namespace HeartsDesireLuxury.Controllers
 
         [HttpGet]
         public IActionResult Register()
+
         {
             return View();
         }
@@ -26,7 +27,7 @@ namespace HeartsDesireLuxury.Controllers
         public async Task<IActionResult> Register(CustomerRegister customerRegister)
         {
             if(ModelState.IsValid == false)
-            {
+            { 
                 ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
 
                 return View(customerRegister);
@@ -42,6 +43,7 @@ namespace HeartsDesireLuxury.Controllers
 
                 return RedirectToAction("Index","Home");
             }
+
 
             else
             {

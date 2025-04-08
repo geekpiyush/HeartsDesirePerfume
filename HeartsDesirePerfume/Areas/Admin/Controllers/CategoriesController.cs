@@ -8,6 +8,7 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
     public class CategoriesController : Controller
     {
         private readonly IProductCategoryService _productCategoryService;
+        
         public CategoriesController(IProductCategoryService productCategoryService)
         {
             _productCategoryService = productCategoryService;
@@ -16,7 +17,8 @@ namespace HeartsDesireLuxury.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Categories()
         {
-            return View();
+            List<ProductCategoryResponse> productCategoryResponses = _productCategoryService.GetAllCategory();
+            return View( productCategoryResponses);
         }
 
         [HttpGet]
