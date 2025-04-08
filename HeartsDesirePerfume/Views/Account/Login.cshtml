@@ -1,7 +1,22 @@
-﻿@{
+﻿@model CustomerRegister
+@{
 	ViewBag.Title = "Login";
 }
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: linear-gradient(to right, #74ebd5, #acb6e5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
     .container {
         background-color: #fff;
         padding: 40px;
@@ -68,7 +83,10 @@
     <div class="form-container">
         <div class="login-details">
             <input type="text" placeholder="Username" />
+            <span asp-validation-for="Email"></span>
+
             <input type="password" placeholder="Password" />
+            <span asp-validation-for="Password"></span>
 
             <!-- Inline checkbox and label -->
             <div class="checkbox-label">
