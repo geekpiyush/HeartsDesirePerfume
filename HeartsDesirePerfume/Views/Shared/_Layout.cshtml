@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Entities.IdentityEntity
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,7 +35,14 @@
 
             <!-- Icons (Right) -->
             <div class="icons">
-                <span class="user-icon">👤</span>
+                <span>
+                    @{
+                        var user = await UserManager.GetUserAsync(User);
+                        var customerName = user?.CustomerName;
+                    }
+                    @customerName
+                </span>
+                <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span>
                 <span class="cart-icon">🛍️</span>
             </div>
         </div>
@@ -42,8 +54,8 @@
                 <li><a href="#">Shop All</a></li>
                 <li><a href="#">Bestsellers</a></li>
                 <li><a href="#">Perfumes</a></li>
-                <li><a href="#">Bath & Body</a></li>
-                <li><a href="#">Cosmetics</a></li>
+                @* <li><a href="#">Bath & Body</a></li> *@
+                @* <li><a href="#">Cosmetics</a></li> *@
                 <li><a href="#">New Arrivals</a></li>
                 <li><a href="#">Skincare</a></li>
                 <li><a href="#">Gifting</a></li>

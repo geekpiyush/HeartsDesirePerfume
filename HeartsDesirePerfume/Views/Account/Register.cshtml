@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CustomerRegister
+@{
     ViewBag.Title = "Register";
 }
 <style>
@@ -91,9 +92,9 @@
 
 <div class="container">
     <h1>Register Form</h1>
-    <form>
+    <form asp-controller="Account" asp-action="Register" method="post">
         <div class="form-control">
-            <input type="email" name="email" required />
+            <input asp-for="Email" />
             <label >Email</label>
      @*        <lable>
                 <span style="transition-delay:0ms">E</span>
@@ -104,25 +105,42 @@
             </lable> *@
         </div>
         <div class="form-control">
-            <input type="text" name="name" required />
+            <input asp-for="Phone" />
+            <label>Contact</label>
+            <span asp-validation-for="Phone"></span>
+        </div>
+        <div class="form-control">
+            <input asp-for="CustomerName" />
             <label>First Name</label>
+            <span asp-validation-for="CustomerName"></span>
         </div>
         <div class="form-control">
-            <input type="password" name="email" required />
+            <input asp-for="Password" />
             <label>Password</label>
+            <span asp-validation-for="Password"></span>
         </div>
         <div class="form-control">
-            <input type="password" name="email" required />
+            <input asp-for="ConfirmPassword"/>
             <label>Confirm Password</label>
+            <span asp-validation-for="ConfirmPassword"></span>
         </div>
 
-        <button class="btn">Register</button>
+        <button type="submit" class="btn">Register</button>
 
         <p class="text">Already registered ? <a href="#">Log in</a></p>
     </form>
 </div>
-<script>
-    const labels = document.querySelectorAll('.form-control lable')
 
+@if (ViewBag.errors != null)
+{
+    <div style="color:red;">
+        @foreach (string error in ViewBag.errors)
+        {
+            <li>@error</li>
+        }
+    </div>
+}
 
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>

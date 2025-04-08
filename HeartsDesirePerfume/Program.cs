@@ -1,4 +1,7 @@
 using Entities.DB;
+using Entities.IdentityEntity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using Services;
@@ -16,6 +19,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+
+builder.Services.AddIdentity<ApplicationUser,ApplicationUserRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddUserStore<UserStore<ApplicationUser,ApplicationUserRole,ApplicationDbContext,Guid>>()
+    .AddRoleStore<RoleStore<ApplicationUserRole,ApplicationDbContext,Guid>>();
 
 var app = builder.Build();
 
