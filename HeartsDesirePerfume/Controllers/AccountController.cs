@@ -53,6 +53,14 @@ namespace HeartsDesireLuxury.Controllers
                 }
             }
             return View(customerRegister);
+
+        }
+
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }
