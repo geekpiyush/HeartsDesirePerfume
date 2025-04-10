@@ -1,4 +1,5 @@
 ﻿using Entities.IdentityEntity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceContracts.DTO;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace HeartsDesireLuxury.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -46,7 +48,7 @@ namespace HeartsDesireLuxury.Controllers
 
             if(result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, true);
+                await _signInManager.SignInAsync(user,false);
 
                 return RedirectToAction("Index","Home");
             }
@@ -71,5 +73,41 @@ namespace HeartsDesireLuxury.Controllers
         }
 
 
+        [HttpPost]
+         public async Task<IActionResult> Login(CustomerLogin customerLogin,string? ReturnUrl)
+        {
+
+            if(!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
+
+                return View(customerLogin);
+            }
+
+                var result = await _signInManager.PasswordSignInAsync(customerLogin.Email, customerLogin.Password, isPersistent: true, lockoutOnFailure: false);
+
+                if(result.Succeeded)
+                {
+                    if(!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                {
+                    return LocalRedirect(ReturnUrl);
+                }
+                    
+                    return RedirectToAction("Index", "Home");
+                }
+
+            ModelState.AddModelError("Login", "Invalid Email or Password");
+            return View(customerLogin);
+
+        }
+         
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("index", "Home");
+        }
+           
+        }
+
     }
-}

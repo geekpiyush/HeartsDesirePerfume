@@ -1,4 +1,4 @@
-﻿@model CustomerRegister
+﻿@model CustomerLogin
 @{
 	ViewBag.Title = "Login";
 }
@@ -79,22 +79,30 @@
         border-radius: 10px;
     }
 </style>
-<div class="container">
-    <div class="form-container">
-        <div class="login-details">
-            <input type="text" placeholder="Username" />
-            <span asp-validation-for="Email"></span>
+<form asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]" method="post">
+    <div class="container">
+        <div class="form-container">
+            <div class="login-details">
+                @if (ViewData.ModelState["Login"] != null)
+                {
+                    <div style="color:red; text-align:center; margin-bottom:10px;">
+                        @ViewData.ModelState["Login"].Errors.FirstOrDefault()?.ErrorMessage
+                    </div>
+                }
+                <input type="text" placeholder="Username" asp-for="Email" />
+                <span asp-validation-for="Email"></span>
 
-            <input type="password" placeholder="Password" />
-            <span asp-validation-for="Password"></span>
+                <input type="password" placeholder="Password" asp-for="Password" />
+                <span asp-validation-for="Password"></span>
 
-            <!-- Inline checkbox and label -->
-            <div class="checkbox-label">
-                <label for="remember">Remember me</label>
-                <input type="checkbox" id="remember">
+                <!-- Inline checkbox and label -->
+                <div class="checkbox-label">
+                    <label for="remember">Remember me</label>
+                    <input type="checkbox">
+                </div>
+                <button type="submit">Login</button>
+                <span>Want to forget your password? <a asp-action="UpdatePassword" asp-controller="Account">Click here</a></span>
             </div>
-            <button>Login</button>
-            <span>Want to forget your password? <a href="#">Click here</a></span>
         </div>
     </div>
-</div>
+</form>
