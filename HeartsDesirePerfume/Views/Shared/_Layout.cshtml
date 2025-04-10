@@ -35,14 +35,41 @@
 
             <!-- Icons (Right) -->
             <div class="icons">
-                <span>
-                    @{
+                @if(User.Identity.IsAuthenticated)
+                {
+                        
                         var user = await UserManager.GetUserAsync(User);
                         var customerName = user?.CustomerName;
-                    }
-                    @customerName
-                </span>
-                <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span>
+                    
+                   
+                    <div class="account-dropdown">
+                        <span class="customer-name">@customerName</span>
+                        <div class="dropdown-icon">👤</div>
+                        <div class="dropdown-menu">
+                           @*  <a asp-controller="Account" asp-action="Login">Login</a> *@
+                            <a asp-controller="Account" asp-action="Logout">Logout</a>
+                           @*  <a asp-controller="Account" asp-action="Register">Register</a> *@
+                            <a asp-controller="" asp-action="">Profile</a>
+                            <a asp-controller="" asp-action="">Order History</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="account-dropdown">
+                        <div class="dropdown-icon">👤</div>
+                        <div class="dropdown-menu">
+                            <a asp-controller="Account" asp-action="Login">Login</a>
+                           @*  <a asp-controller="Account" asp-action="Logout">Logout</a> *@
+                            <a asp-controller="Account" asp-action="Register">Register</a>
+                         @*    <a asp-controller="" asp-action="">Profile</a>
+                            <a asp-controller="" asp-action="">Order History</a> *@
+                        </div>
+                    </div>
+                }
+
+                  
+                @* <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span> *@
                 <span class="cart-icon">🛍️</span>
             </div>
         </div>

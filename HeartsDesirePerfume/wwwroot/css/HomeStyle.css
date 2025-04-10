@@ -502,3 +502,52 @@ header {
     color: white;
     transition: color 0.3s ease-in-out;
 }
+/* Account Dropdown */
+.account-dropdown {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.customer-name {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+
+.dropdown-icon {
+    font-size: 20px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    color: black;
+    min-width: 120px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+}
+
+    .dropdown-menu a {
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+    }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+/* Show menu on hover */
+.account-dropdown:hover .dropdown-menu {
+    display: flex;
+}

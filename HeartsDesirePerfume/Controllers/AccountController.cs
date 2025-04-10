@@ -33,6 +33,13 @@ namespace HeartsDesireLuxury.Controllers
                 return View(customerRegister);
             }
 
+            var existingUser = await _userManager.FindByEmailAsync(customerRegister.Email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("Email", "This email is already registered");
+                return View(customerRegister);
+            }
+
             ApplicationUser user = new ApplicationUser() { Email = customerRegister.Email, PhoneNumber = customerRegister.Phone, UserName = customerRegister.Email, CustomerName = customerRegister.CustomerName };
 
             IdentityResult result = await _userManager.CreateAsync(user,customerRegister.Password);
@@ -62,5 +69,7 @@ namespace HeartsDesireLuxury.Controllers
         {
             return View();
         }
+
+
     }
 }
