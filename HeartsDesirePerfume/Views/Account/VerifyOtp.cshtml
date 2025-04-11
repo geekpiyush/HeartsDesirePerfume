@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Verify OTP";
+}
+
+<style>
+    body
+    {
+        display:flex;
+        justify-content:center;
+        align-content:center;
+        align-items:center;
+    }
+    .container
+    {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+       margin-top:150px;
+    }
+</style> 
+
+
+ <div class="container">
+    <h1>Verify OTP</h1>
+
+    <form method="post" asp-action="VerifyOtp" asp-controller="Account">
+        <div class="form-control">
+            <input type="text" name="otp" placeholder="Enter OTP" required />
+        </div>
+
+        <button type="submit" class="btn">Verify</button>
+    </form>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+            <div style="color:red;">
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                                <li>@error.ErrorMessage</li>
+                }
+            }
+            </div>
+    }
+</div>

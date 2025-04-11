@@ -4,94 +4,95 @@
 }
 <style>
     * {
-        box-sizing:border-box;
+    box-sizing:border-box;
     }
     body
     {
-        background-color:steelblue;
-        color:white;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        height:100vh;
-        overflow:hidden;
-        margin:0px;
+    background-color:steelblue;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    overflow:hidden;
+    margin:0px;
 
     }
     .container
     {
     background-color:rgba(0,0,0,0.4);
-    padding:20px 20px;
+    padding:15px 15px;
     width:400px;
     border-radius:5px;
     }
     .container h1
     {
-        text-align:center;
-        margin-bottom:30px;
+    text-align:center;
+    margin-bottom:30px;
     }
     .container a
     {
-        text-decoration:none;
-        color:lightblue;
+    text-decoration:none;
+    color:lightblue;
     }
     .btn
     {
-        cursor:pointer;
-        display:inline-block;
-        width:100%;
-        background-color:lightblue;
-        padding:15px;
-        font-family:inherit;
-        font:16px;
-        border:0px;
-        border-radius:5px;
+    cursor:pointer;
+    display:inline-block;
+    width:100%;
+    background-color:lightblue;
+    padding:15px;
+    font-family:inherit;
+    font:16px;
+    border:0px;
+    border-radius:5px;
     }
     .btn:focus
     {
-        outline:0;
+    outline:0;
     }
     .btn:active
     {
-        transform:scale(0.98);
+    transform:scale(0.98);
     }
     .text
     {
-        margin-top:30px;
+    margin-top:30px;
     }
     .form-control
     {
-        position:relative;
-        margin: 10px 0px 20px;
-        width:300px;
+    position:relative;
+    margin: 10px 0px 20px;
+    width:300px;
     }
     .form-control input
     {
-        background-color:transparent;
-        color:white;
-        border:0;
-        border-bottom: 2px white solid;
-        display:block;
-        width:100%;
-        padding:10px 0px;
-        font-size:12px;
+    background-color:transparent;
+    color:white;
+    border:0;
+    border-bottom: 2px white solid;
+    display:block;
+    width:100%;
+    padding:8px 0px;
+    font-size:12px;
     }
     .form-control input:focus,
     .form-control input:valid
     {
-        outline:0px;
+    outline:0px;
     }
     .form-control label
     {
-        position:absolute;
-        top:15px;
-        left:0;
+    position:absolute;
+    top:15px;
+    left:0;
     }
     .text-danger
     {
-        color:red;
+    color:red;
     }
+
 </style>
 
 <div class="container">
@@ -100,8 +101,8 @@
         <div class="form-control">
             <input asp-for="Email" placeholder="Email"/>
             <span asp-validation-for="Email" class="text-danger"></span>
-           
-     @*        <lable>
+
+            @*        <lable>
                 <span style="transition-delay:0ms">E</span>
                 <span style="transition-delay:50ms">m</span>
                 <span style="transition-delay:100ms">a</span>
@@ -111,7 +112,7 @@
         </div>
         <div class="form-control">
             <input asp-for="Phone" placeholder="Contact"/>
-           
+
             <span asp-validation-for="Phone" class="text-danger"></span>
         </div>
         <div class="form-control">
@@ -130,11 +131,12 @@
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn" id="clickBtn">Register</button>
 
         <p class="text">Already registered ? <a asp-controller="Account" asp-action="Login">Log in</a></p>
     </form>
 </div>
+
 
 @if (ViewBag.errors != null)
 {

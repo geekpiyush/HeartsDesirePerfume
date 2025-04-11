@@ -45,6 +45,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Account/Login";
 });
 
+builder.Services.AddHttpClient<SmsService>();
+
 var app = builder.Build();
 
 //builder.Services.AddDbContext<ApplicationDbContext>(optins=>
