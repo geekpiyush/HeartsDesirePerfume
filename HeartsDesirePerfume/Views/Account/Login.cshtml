@@ -98,7 +98,7 @@
                 <!-- Inline checkbox and label -->
                 <div class="checkbox-label">
                     <label for="remember">Remember me</label>
-                    <input type="checkbox">
+                    <input type="checkbox" asp-for="KeepMeSignedin">
                 </div>
                 <button type="submit">Login</button>
                 <span>Want to forget your password? <a asp-action="UpdatePassword" asp-controller="Account">Click here</a></span>

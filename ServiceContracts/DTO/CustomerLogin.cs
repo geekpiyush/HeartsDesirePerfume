@@ -17,6 +17,6 @@ namespace ServiceContracts.DTO
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
-        public bool? KeepMeSignedin { get; set; }
+        public bool KeepMeSignedin { get; set; }
     }
 }

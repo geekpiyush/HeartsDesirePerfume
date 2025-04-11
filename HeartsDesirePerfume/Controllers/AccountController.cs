@@ -75,7 +75,7 @@ namespace HeartsDesireLuxury.Controllers
 
         [HttpPost]
          public async Task<IActionResult> Login(CustomerLogin customerLogin,string? ReturnUrl)
-        {
+         {
 
             if(!ModelState.IsValid)
             {
@@ -84,7 +84,25 @@ namespace HeartsDesireLuxury.Controllers
                 return View(customerLogin);
             }
 
-                var result = await _signInManager.PasswordSignInAsync(customerLogin.Email, customerLogin.Password, isPersistent: true, lockoutOnFailure: false);
+
+            if(customerLogin.KeepMeSignedin == true)
+            {
+                var keepmesignedin = await _signInManager.PasswordSignInAsync(customerLogin.Email, customerLogin.Password, isPersistent: true, lockoutOnFailure: false);
+
+                if(keepmesignedin.Succeeded)
+                {
+                    if(!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                    {
+                        return LocalRedirect(ReturnUrl);
+                    }
+                    return RedirectToAction("index", "Home");
+                }
+
+            }
+
+
+
+                var result = await _signInManager.PasswordSignInAsync(customerLogin.Email, customerLogin.Password, isPersistent: false, lockoutOnFailure: false);
 
                 if(result.Succeeded)
                 {
