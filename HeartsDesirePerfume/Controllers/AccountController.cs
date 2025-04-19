@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ServiceContracts.DTO;
 using System.Threading.Tasks;
@@ -57,9 +59,9 @@ namespace HeartsDesireLuxury.Controllers
         //    return RedirectToAction("VerifyOtp");
         //}
 
-
+         
         [HttpPost]
-        public async Task<IActionResult> Register(CustomerRegister customerRegister)
+        public async Task<IActionResult>Register(CustomerRegister customerRegister)
         {
             if (ModelState.IsValid == false)
             {
@@ -75,6 +77,14 @@ namespace HeartsDesireLuxury.Controllers
                 return View(customerRegister);
             }
 
+            var existingPhoneNumber = await _userManager.Users.FirstOrDefaultAsync(temp => temp.PhoneNumber == customerRegister.Phone);
+
+            if (existingPhoneNumber != null)
+            {
+                ModelState.AddModelError("Phone", "Phone number already exist");
+                return View(customerRegister);
+            }
+
             ApplicationUser user = new ApplicationUser() { Email = customerRegister.Email, PhoneNumber = customerRegister.Phone, UserName = customerRegister.Email, CustomerName = customerRegister.CustomerName };
 
             IdentityResult result = await _userManager.CreateAsync(user, customerRegister.Password);
@@ -83,7 +93,7 @@ namespace HeartsDesireLuxury.Controllers
             {
                 await _signInManager.SignInAsync(user, false);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home"); 
             }
 
 
@@ -159,52 +169,5 @@ namespace HeartsDesireLuxury.Controllers
             return RedirectToAction("index", "Home");
         }
 
-
-        //[HttpGet]
-        //public IActionResult VerifyOtp()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public async Task<IActionResult> VerifyOtp(string otp)
-        //{
-        //    var actualOtp = TempData["OTP"]?.ToString();
-        //    var customerRegisterJson = TempData["RegisterData"]?.ToString();
-
-        //    if (actualOtp == otp && customerRegisterJson != null)
-        //    {
-        //        var customerRegister = JsonConvert.DeserializeObject<CustomerRegister>(customerRegisterJson);
-
-        //        ApplicationUser user = new ApplicationUser()
-        //        {
-        //            Email = customerRegister.Email,
-        //            PhoneNumber = customerRegister.Phone,
-        //            UserName = customerRegister.Email,
-        //            CustomerName = customerRegister.CustomerName
-        //        };
-
-        //        IdentityResult result = await _userManager.CreateAsync(user, customerRegister.Password);
-
-        //        if (result.Succeeded)
-        //        {
-        //            await _signInManager.SignInAsync(user, false);
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //        {
-        //            foreach (var error in result.Errors)
-        //            {
-        //                ModelState.AddModelError("Register", error.Description);
-        //            }
-        //            return RedirectToAction("Register");
-        //        }
-        //    }
-
-        //    ModelState.AddModelError("OTP", "Invalid OTP");
-        //    return View();
-        //}
-
     }
-
-
-    }
+}
