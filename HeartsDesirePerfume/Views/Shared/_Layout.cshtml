@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Entities.IdentityEntity
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HeartsDesireLuxury</title>
     <link href="~/css/site.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/heartslogo.png" />
 </head>
 
 <body>
@@ -23,7 +29,41 @@
 
             <!-- Icons (Right) -->
             <div class="icons">
-                <span class="user-icon">👤</span>
+                @if(User.Identity.IsAuthenticated)
+                {
+                        
+                        var user = await UserManager.GetUserAsync(User);
+                        var customerName = user?.CustomerName;
+                    
+                   
+                    <div class="account-dropdown">
+                        <span class="customer-name">@customerName</span>
+                        <div class="dropdown-icon">👤</div>
+                        <div class="dropdown-menu">
+                           @*  <a asp-controller="Account" asp-action="Login">Login</a> *@
+                            <a asp-controller="Account" asp-action="Logout">Logout</a>
+                           @*  <a asp-controller="Account" asp-action="Register">Register</a> *@
+                            <a asp-controller="" asp-action="">Profile</a>
+                            <a asp-controller="" asp-action="">Order History</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="account-dropdown">
+                        <div class="dropdown-icon">👤</div>
+                        <div class="dropdown-menu">
+                            <a asp-controller="Account" asp-action="Login">Login</a>
+                           @*  <a asp-controller="Account" asp-action="Logout">Logout</a> *@
+                            <a asp-controller="Account" asp-action="Register">Register</a>
+                         @*    <a asp-controller="" asp-action="">Profile</a>
+                            <a asp-controller="" asp-action="">Order History</a> *@
+                        </div>
+                    </div>
+                }
+
+                  
+                @* <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span> *@
                 <span class="cart-icon">🛍️</span>
             </div>
         </div>
@@ -35,8 +75,8 @@
                 <li><a href="#">Shop All</a></li>
                 <li><a href="#">Bestsellers</a></li>
                 <li><a href="#">Perfumes</a></li>
-                <li><a href="#">Bath & Body</a></li>
-                <li><a href="#">Cosmetics</a></li>
+                @* <li><a href="#">Bath & Body</a></li> *@
+                @* <li><a href="#">Cosmetics</a></li> *@
                 <li><a href="#">New Arrivals</a></li>
                 <li><a href="#">Skincare</a></li>
                 <li><a href="#">Gifting</a></li>
@@ -50,6 +90,45 @@
             @RenderBody()
         </main>
     </div>
+   @*  <footer>
+        <div class="footer-container">
+            <div class="box">
+                <h1>BESTSELLERS</h1>
+                <a href="#">Ultimate Perfume Box</a>
+                <a href="#">Perfume For Women</a>
+                <a href="#">Perfume For Men</a>
+                <a href="#">Unisex Perfume</a>
+                <a href="#">Costmetic Product</a>
+            </div>
+            <div class="box">
+                <h1>INFORMATION</h1>
+                <a href="#">Blogs</a>
+                <a href="#">Newroom</a>
+                <a href="#">Terms & Condition</a>
+                <a href="#">Refund and Return</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="box">
+                <h1>CONTACT US</h1>
+                <p>+91 7902785340</p>
+                <p>Email:admin@gmail.com</p>
+                <Address>Nx one Tower 4 - A-1411 Techzone 4 <br>plot number 17 Greater Noida west Pin 201306</Address>
+            </div>
+            <div class="box">
+                <h1>SOCIAL SHARE</h1>
+                <div class="icons">
+                <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
+                <a href="#"><i class="fa fa-instagram fa-fw"></i></a>
+                <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
+                <a href="#"><i class="fa fa-youtube fa-fw"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+           <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
+        </div>            
+    </footer> *@
+
 
     <script>
         function toggleMenu() {

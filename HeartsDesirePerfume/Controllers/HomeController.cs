@@ -1,4 +1,5 @@
 using HeartsDesireLuxury.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 
 namespace HeartsDesireLuxury.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IProductServices _productServices;

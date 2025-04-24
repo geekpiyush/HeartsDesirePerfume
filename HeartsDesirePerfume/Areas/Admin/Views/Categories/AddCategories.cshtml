@@ -1,0 +1,21 @@
+﻿@model ProductCategoryAddRequest
+@{
+    ViewBag.Title = "Add Categories";
+}
+<link href="~/css/AdminCSS/addproductstyle.css" rel="stylesheet" />
+<div class="form-container">
+    <form asp-controller="Categories" asp-area="Admin" asp-action="AddCategories" method="POST" enctype="multipart/form-data">
+
+        <div asp-validation-summary="All" style="color:red;"></div>
+
+        <label asp-for="CategoryName">Category Name</label>
+        <input type="text" asp-for="CategoryName" />
+        <span asp-validation-for="CategoryName" style="color:red;"></span>
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>

@@ -12,13 +12,21 @@ namespace Services
     public class ProductService : IProductServices
     {
         private readonly ApplicationDbContext _db;
-        public ProductService( ApplicationDbContext applicationDbContext)
+        private readonly IProductCategoryService _productCategoryService;
+        public ProductService( ApplicationDbContext applicationDbContext, IProductCategoryService productCategoryService)
         {
-            
+
             _db = applicationDbContext;
+            _productCategoryService = productCategoryService;
         }
 
+        private ProductResponse ConvertProductToProductResponse(Products products)
+        {
+            ProductResponse productResponse = products.ToProductResponse();
+            productResponse.Category = _productCategoryService.GetCategoryByCategoryID(productResponse.CategoryID)?.CategoryName;
 
+            return productResponse;
+        }
         public ProductResponse AddProduct(ProductAddRequest? productAddRequest)
         {
             if (productAddRequest == null)
@@ -50,10 +58,15 @@ namespace Services
                 product.ReferenceImages = string.Join("\n", imagePaths); 
             }
 
+            ProductResponse productResponse =  product.ToProductResponse();
+              productResponse.Category = _productCategoryService.GetCategoryByCategoryID(productResponse.CategoryID)?.CategoryName;
+
             _db.Products.Add(product);
             _db.SaveChanges();
-            return product.ToProductResponse();
+
+            return ConvertProductToProductResponse(product);
         }
+
 
         private string SaveImage(IFormFile image, string folderName)
         {
@@ -116,6 +129,9 @@ namespace Services
             matchingProducts.ProductSalePrice = productUpdateRequest.ProductSalePrice;
             matchingProducts.SkuID = productUpdateRequest.SkuID;
             matchingProducts.Stock = productUpdateRequest.Stock;
+            matchingProducts.MainImagePath = productUpdateRequest.MainImagePath;
+            matchingProducts.CategoryID = productUpdateRequest.CategoryID;
+            
 
             _db.SaveChanges();
             return matchingProducts.ToProductResponse();

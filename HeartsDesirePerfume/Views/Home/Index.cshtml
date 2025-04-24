@@ -4,16 +4,13 @@
 <link href="~/css/homestyle.css" rel="stylesheet" />
 <!-- 📽️ Video Banner -->
 <section class="video-banner">
-    <video autoplay loop muted playsinline class="background-video">
-        <source src="~/Videos/bannermodelvideo.mp4" type="video/mp4">
+    <video id="banner-video" autoplay loop muted playsinline class="background-video">
+        <source id="video-source" src="~/Videos/bannermodelvideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    @* <div class="video-overlay">
-        <h1>Experience Luxury Perfumes</h1>
-        <p>Discover the finest scents crafted just for you</p>
-        <a href="#" class="shop-now-btn">Shop Now</a>
-    </div> *@
 </section>
+
+
 
 <section class="products-section">
     <div class="container">
@@ -88,23 +85,22 @@
     </div>
 </section>
 
+
 <div class="premium-perfume-showcase">
     <div class="perfume-flex-container">
         <!-- Left: Image -->
         <div class="perfume-image-side">
             <img src="/images/luxuryperfume.png" alt="Luxury Perfume">
         </div>
-
-        <!-- Right: Content -->
-        <div class="perfume-content-side">
-            <h2>Unveil the Art of Fragrance</h2>
-            <p>
-                Step into a world of elegance and refinement. Our signature scent embodies timeless sophistication,
-                handcrafted with rare ingredients for the modern connoisseur.
-            </p>
-            <a href="#" class="perfume-shop-btn">Shop Now</a>
-        </div>
-    </div>
+            <div class="perfume-content-side">
+                <h2>Unveil the Art of Fragrance</h2>
+                <p>
+                    Step into a world of elegance and refinement. Our signature scent embodies timeless sophistication,
+                    handcrafted with rare ingredients for the modern connoisseur.
+                </p>
+                <a href="#" class="perfume-shop-btn">Shop Now</a>
+            </div>
+</div>
 </div>
 
 
@@ -142,4 +138,29 @@
     // Auto Slide Every 4 Seconds
     setInterval(() => moveSlide(1), 4000);
 
+
+       document.addEventListener("DOMContentLoaded", function () {
+        const videoSources = [
+            "/Videos/bannermodelvideo.mp4",
+            "/Videos/video2.mp4",
+            "/Videos/video3.mp4"
+            
+        ];
+
+        let videoIndex = 0;
+        const videoElement = document.getElementById("banner-video");
+        const videoSourceElement = document.getElementById("video-source");
+
+        function changeVideo() {
+            videoIndex = (videoIndex + 1) % videoSources.length;
+            videoSourceElement.src = videoSources[videoIndex];
+            videoElement.load();  // Reload the new video source
+            videoElement.play();
+        }
+
+       
+        videoElement.addEventListener("ended", changeVideo);
+
+        setInterval(changeVideo, 20000);
+    });
 </script>

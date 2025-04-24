@@ -1,50 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<ProductCategoryResponse>
 @{
+    ViewBag.Title = "Categories";
 }
 <link rel="stylesheet" href="~/css/AdminCSS/CategoryStyle.css">
 <h1>Categories</h1>
-    <table>
-        <caption>Product Categories</caption>
-        <thead>
+<button><a asp-controller="Categories" asp-area="Admin" asp-action="AddCategories"> Add Category</a></button>
+<table>
+    <caption>Product Categories</caption>
+    <thead>
+        <tr>
+            <th>Product Category ID</th>
+            <th>Product Category Title</th>
+            <th>Edit Product Category</th>
+            <th>Delete Product Category</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(ProductCategoryResponse productCategory in Model)
+        {
             <tr>
-                <th>Product Category ID</th>
-                <th>Product Category Title</th>
-                <th>Product Category Description</th>
-                <th>Edit Product Category</th>
-                <th>Delete Product Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Men Perfume</td>
-                <td>Men's Eau de Parfum.</td>
+                <td>@productCategory.CategoryID</td>
+                <td>@productCategory.CategoryName</td>
                 <td><button class="edit">Edit</button></td>
                 <td><button>Delete</button></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Woman Perfume</td>
-                <td>Top Women's Perfumes.</td>
-                <td><button class="edit">Edit</button></td>
-                <td><button>Delete</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Luxury Perfume</td>
-                <td>Luxury Fragrances for All</td>
-                <td><button class="edit">Edit</button></td>
-                <td><button>Delete</button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Skin Care</td>
-                <td>Premium Skin Care Collection</td>
-                <td><button class="edit">Edit</button></td>
-                <td><button>Delete</button></td>
-            </tr>
+        }
+           
             
         </tbody>
     </table>
