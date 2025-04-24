@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -19,5 +19,149 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.383);
+    color: #fff;
+    text-align: center;
+}
+
+/* ✅ Top Header Layout */
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: transparent;
+    position: relative;
+}
+
+/* 🔍 Search Bar */
+.search-box {
+    flex: 1;
+    max-width: 250px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* 🏷 Logo (Centered) */
+.logo {
+    max-width: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Icons (Right) */
+.icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* 🍔 Menu Icon (Left) */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 📌 Navigation Menu */
+.nav-menu {
+    background: transparent;
+    padding: 10px 0;
+}
+
+    .nav-menu ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+        .nav-menu ul li {
+            display: inline;
+        }
+
+            .nav-menu ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: normal;
+                padding: 5px 10px;
+            }
+
+                .nav-menu ul li a:hover {
+                    color: #f4b400;
+                }
+
+/* ✅ Mobile View */
+@media (max-width: 768px) {
+    .top-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    /* 🔍 Hide Search Bar */
+    .search-box {
+        display: none;
+    }
+
+    /* 📱 Mobile Layout - Menu Left, Logo Center, Cart Right */
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo {
+        position: static;
+        transform: none;
+    }
+
+    .icons {
+        display: flex;
+        gap: 15px;
+    }
+
+    /* Hide User Icon on Mobile */
+    .user-icon {
+        display: none;
+    }
+
+    /* 📜 Responsive Navigation Menu */
+    .nav-menu ul {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+        .nav-menu ul.show {
+            display: flex;
+        }
+}
+
+
+/* ✅ Transparent Navbar */
+.transparent-navbar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent */
+    color: white;
+    z-index: 10;
+    padding: 15px 0;
 }
 

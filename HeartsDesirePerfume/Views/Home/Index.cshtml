@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link href="~/css/homestyle.css" rel="stylesheet" />
 <!-- 📽️ Video Banner -->
 <section class="video-banner">
     <video autoplay loop muted playsinline class="background-video">
@@ -87,24 +88,25 @@
     </div>
 </section>
 
-<div class="carousel">
-    <div class="carousel-track">
-        <img src="~/images/banner1.png" class="carousel-img" alt="Banner 1">
-        <img src="~/images/banner2.png" class="carousel-img" alt="Banner 2">
-        <img src="~/images/banner3.png" class="carousel-img" alt="Banner 3">
-    </div>
+<div class="premium-perfume-showcase">
+    <div class="perfume-flex-container">
+        <!-- Left: Image -->
+        <div class="perfume-image-side">
+            <img src="/images/luxuryperfume.png" alt="Luxury Perfume">
+        </div>
 
-    <!-- Arrows -->
-    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="next" onclick="moveSlide(1)">&#10095;</button>
-
-    <!-- Indicators -->
-    <div class="carousel-dots">
-        <span class="dot active" onclick="jumpToSlide(0)"></span>
-        <span class="dot" onclick="jumpToSlide(1)"></span>
-        <span class="dot" onclick="jumpToSlide(2)"></span>
+        <!-- Right: Content -->
+        <div class="perfume-content-side">
+            <h2>Unveil the Art of Fragrance</h2>
+            <p>
+                Step into a world of elegance and refinement. Our signature scent embodies timeless sophistication,
+                handcrafted with rare ingredients for the modern connoisseur.
+            </p>
+            <a href="#" class="perfume-shop-btn">Shop Now</a>
+        </div>
     </div>
 </div>
+
 
 
 
