@@ -29,7 +29,7 @@
 
             <!-- Icons (Right) -->
             <div class="icons">
-                @if(User.Identity.IsAuthenticated)
+               @if(User.Identity.IsAuthenticated)
                 {
                         
                         var user = await UserManager.GetUserAsync(User);
@@ -37,12 +37,12 @@
                     
                    
                     <div class="account-dropdown">
-                        <span class="customer-name">@customerName</span>
+                        <span class="customer-name">customerName</span>
                         <div class="dropdown-icon">👤</div>
                         <div class="dropdown-menu">
-                           @*  <a asp-controller="Account" asp-action="Login">Login</a> *@
+                             <a asp-controller="Account" asp-action="Login">Login</a> 
                             <a asp-controller="Account" asp-action="Logout">Logout</a>
-                           @*  <a asp-controller="Account" asp-action="Register">Register</a> *@
+                            <a asp-controller="Account" asp-action="Register">Register</a> 
                             <a asp-controller="" asp-action="">Profile</a>
                             <a asp-controller="" asp-action="">Order History</a>
                         </div>
@@ -54,16 +54,16 @@
                         <div class="dropdown-icon">👤</div>
                         <div class="dropdown-menu">
                             <a asp-controller="Account" asp-action="Login">Login</a>
-                           @*  <a asp-controller="Account" asp-action="Logout">Logout</a> *@
+                             <a asp-controller="Account" asp-action="Logout">Logout</a> 
                             <a asp-controller="Account" asp-action="Register">Register</a>
-                         @*    <a asp-controller="" asp-action="">Profile</a>
-                            <a asp-controller="" asp-action="">Order History</a> *@
+                            <a asp-controller="" asp-action="">Profile</a>
+                            <a asp-controller="" asp-action="">Order History</a>
                         </div>
                     </div>
                 }
 
                   
-                @* <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span> *@
+                <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span>
                 <span class="cart-icon">🛍️</span>
             </div>
         </div>
@@ -75,22 +75,20 @@
                 <li><a href="#">Shop All</a></li>
                 <li><a href="#">Bestsellers</a></li>
                 <li><a href="#">Perfumes</a></li>
-                @* <li><a href="#">Bath & Body</a></li> *@
-                @* <li><a href="#">Cosmetics</a></li> *@
+                <li><a href="#">Bath & Body</a></li>
+                <li><a href="#">Cosmetics</a></li>
                 <li><a href="#">New Arrivals</a></li>
                 <li><a href="#">Skincare</a></li>
                 <li><a href="#">Gifting</a></li>
             </ul>
         </nav>
     </header>
-
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-   @*  <footer>
+    <footer>
         <div class="footer-container">
             <div class="box">
                 <h1>BESTSELLERS</h1>
@@ -127,7 +125,7 @@
         <div class="footer-bottom">
            <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
         </div>            
-    </footer> *@
+    </footer>
 
 
     <script>
