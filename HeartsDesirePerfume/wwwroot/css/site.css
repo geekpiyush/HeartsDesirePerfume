@@ -1,7 +1,8 @@
 ﻿html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -10,11 +11,6 @@
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
 }
 
 body {
@@ -26,9 +22,8 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
 header {
     background: rgba(0, 0, 0, 0.383);
     color: #fff;
@@ -242,12 +237,6 @@ header {
 /* Show menu on hover */
 .account-dropdown:hover .dropdown-menu {
     display: flex;
-}
-
-* {
-    padding: 0px;
-    margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-container {
