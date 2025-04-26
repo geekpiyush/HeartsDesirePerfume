@@ -12,129 +12,48 @@
     <title>@ViewData["Title"] - HeartsDesireLuxury</title>
     <link href="~/css/site.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="/images/heartslogo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;600&family=Cinzel:wght@400;700&family=Libre+Baskerville&family=Forum&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header class="transparent-navbar">
-        <div class="top-header">
-            <!-- Search Bar (Left on Desktop, Hidden on Mobile) -->
-            <input type="text" placeholder="Search for Shower G" class="search-box">
-
-            <!-- Mobile Menu Icon (Left) -->
-            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-            <!-- Logo (Center) -->
-            <img src="~/images/heartslogo.png" alt="Bella Vita" class="logo">
-
-            <!-- Icons (Right) -->
-            <div class="icons">
-               @if(User.Identity.IsAuthenticated)
-                {
-                        
-                        var user = await UserManager.GetUserAsync(User);
-                        var customerName = user?.CustomerName;
-                    
-                   
-                    <div class="account-dropdown">
-                        <span class="customer-name">customerName</span>
-                        <div class="dropdown-icon">👤</div>
-                        <div class="dropdown-menu">
-                             <a asp-controller="Account" asp-action="Login">Login</a> 
-                            <a asp-controller="Account" asp-action="Logout">Logout</a>
-                            <a asp-controller="Account" asp-action="Register">Register</a> 
-                            <a asp-controller="" asp-action="">Profile</a>
-                            <a asp-controller="" asp-action="">Order History</a>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="account-dropdown">
-                        <div class="dropdown-icon">👤</div>
-                        <div class="dropdown-menu">
-                            <a asp-controller="Account" asp-action="Login">Login</a>
-                             <a asp-controller="Account" asp-action="Logout">Logout</a> 
-                            <a asp-controller="Account" asp-action="Register">Register</a>
-                            <a asp-controller="" asp-action="">Profile</a>
-                            <a asp-controller="" asp-action="">Order History</a>
-                        </div>
-                    </div>
-                }
-
-                  
-                <span class="user-icon"><a asp-controller="Account" asp-action="Register">👤</a></span>
-                <span class="cart-icon">🛍️</span>
-            </div>
+    <header class="navbar" id="navbar">
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
         </div>
 
-        <!-- Navigation Menu -->
-        <nav class="nav-menu">
-            <ul id="menu-list">
-                <li><a href="#">Crazy Deals</a></li>
-                <li><a href="#">Shop All</a></li>
-                <li><a href="#">Bestsellers</a></li>
-                <li><a href="#">Perfumes</a></li>
-                <li><a href="#">Bath & Body</a></li>
-                <li><a href="#">Cosmetics</a></li>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Skincare</a></li>
-                <li><a href="#">Gifting</a></li>
-            </ul>
-        </nav>
+        <div class="navbar-left">
+            <a href="#">Woman</a>
+            <a href="#">Men</a>
+            <a href="#">Luxury</a>
+            <a href="#">Skin Care</a>
+            <a href="#">About Us</a>
+        </div>
+
+        <div class="logo">Hearts's Desire</div>
+
+        <div class="navbar-right">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#">Woman</a>
+            <a href="#">Men</a>
+            <a href="#">Luxury</a>
+            <a href="#">Skin Care</a>
+            <a href="#">About Us</a>
+        </div>
     </header>
+
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-    <footer>
-        <div class="footer-container">
-            <div class="box">
-                <h1>BESTSELLERS</h1>
-                <a href="#">Ultimate Perfume Box</a>
-                <a href="#">Perfume For Women</a>
-                <a href="#">Perfume For Men</a>
-                <a href="#">Unisex Perfume</a>
-                <a href="#">Costmetic Product</a>
-            </div>
-            <div class="box">
-                <h1>INFORMATION</h1>
-                <a href="#">Blogs</a>
-                <a href="#">Newroom</a>
-                <a href="#">Terms & Condition</a>
-                <a href="#">Refund and Return</a>
-                <a href="#">Privacy Policy</a>
-            </div>
-            <div class="box">
-                <h1>CONTACT US</h1>
-                <p>+91 7902785340</p>
-                <p>Email:admin@gmail.com</p>
-                <Address>Nx one Tower 4 - A-1411 Techzone 4 <br>plot number 17 Greater Noida west Pin 201306</Address>
-            </div>
-            <div class="box">
-                <h1>SOCIAL SHARE</h1>
-                <div class="icons">
-                <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
-                <a href="#"><i class="fa fa-instagram fa-fw"></i></a>
-                <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
-                <a href="#"><i class="fa fa-youtube fa-fw"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-           <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
-        </div>            
-    </footer>
+   
 
-
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu-list");
-            menu.classList.toggle("show");
-        }
-
-    </script>
-
+    <script src="~/js/site.js"></script>
 </body>
-
 </html>

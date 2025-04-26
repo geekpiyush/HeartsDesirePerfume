@@ -1,4 +1,14 @@
 /* 🎬 Video Banner */
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #fafafa;
+    color: #333;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
 .video-banner {
     position: relative;
     width: 100%;
@@ -83,13 +93,9 @@
     margin-bottom: 40px;
     margin-top: 80px;
     font-size: 24px;
-    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
 }
-
-    .section-header .active-tab {
-        border-bottom: 3px solid black;
-        padding-bottom: 5px;
-    }
 
 /* 🎯 Grid for Products */
 .products-grid {
@@ -272,10 +278,11 @@
     }
 
     .perfume-content-side p {
-        font-size: 1.2rem;
         color: white;
-        line-height: 1.7;
-        font-family: 'Segoe UI', sans-serif;
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 400;
+        line-height: 1.6;
+        font-size: 16px;
     }
 
 .perfume-shop-btn {
@@ -300,7 +307,7 @@
 /*Categories CSS Style*/
 
 .category-section {
-    padding: 60px 20px;
+    padding: 0px 20px;
     background-color: #fff;
 }
 
@@ -321,17 +328,14 @@
     display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 .category-card {
-    background-color: #f9f9f9;
-    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-    width: 260px;
+    width: 200px;
     flex-shrink: 0;
 }
 
