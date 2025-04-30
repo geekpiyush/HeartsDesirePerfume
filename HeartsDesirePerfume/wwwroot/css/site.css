@@ -273,6 +273,7 @@ body {
     opacity: 0.1;
     animation: moveSparkles 60s linear infinite;
     z-index: 1;
+    pointer-events: none;
 }
 
 @keyframes moveSparkles {

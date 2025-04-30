@@ -24,6 +24,18 @@ namespace HeartsDesireLuxury.Controllers
 
             return View(products);
         }
+        public IActionResult Women()
+        {
+            return View();
+        }
+        public IActionResult Men()
+        {
+            return View();
+        }
+        public IActionResult Luxury()
+        {
+            return View();
+        }
 
     }
 }
