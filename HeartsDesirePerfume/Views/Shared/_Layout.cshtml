@@ -3,6 +3,10 @@
 
 @inject UserManager<ApplicationUser> UserManager
 
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var name = user?.CustomerName ?? user?.UserName;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,9 +37,29 @@
         <div class="logo">Hearts's Desire</div>
 
         <div class="navbar-right">
-            <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-user"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            @if(User.Identity.IsAuthenticated)
+            {
+                <a href="#"><i class="fas fa-search"></i></a>
+
+                <span>@name</span>
+                <a href="#"><i class="fas fa-user"></i></a>
+
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+                <a asp-action="OrderHistory" asp-controller="Account">Order History</a>
+                <a asp-action="logout" asp-controller="Account">Log out</a>
+            }
+            else
+            {
+                <a href="#"><i class="fas fa-search"></i></a>
+
+                <a href="#"><i class="fas fa-user"></i></a>
+
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+                <a asp-action="Login" asp-controller="Account">Login</a>
+                <a asp-action="Register" asp-controller="Account">Register</a>
+            }
         </div>
 
         <div id="mobileMenu" class="mobile-menu">

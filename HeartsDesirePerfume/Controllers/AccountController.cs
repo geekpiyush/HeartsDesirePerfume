@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ServiceContracts.DTO;
 using System.Threading.Tasks;
-
+using Entities.Enums;
 namespace HeartsDesireLuxury.Controllers
 {
     [AllowAnonymous]
@@ -15,12 +15,12 @@ namespace HeartsDesireLuxury.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly SmsService _smsService;
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SmsService smsService)
+       private readonly RoleManager<ApplicationUserRole> _roleManager;
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,RoleManager<ApplicationUserRole> roleManager  )
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _smsService = smsService;
+           _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -91,7 +91,31 @@ namespace HeartsDesireLuxury.Controllers
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, false);
+                //check status of select option
+
+                if(customerRegister.UserType == UserTypeOptions.Admin)
+                {
+                    //create admin role
+
+                   if(await _roleManager.FindByNameAsync(UserTypeOptions.Admin.ToString()) is null)
+                    {
+                        ApplicationUserRole applicationUserRole = new ApplicationUserRole() { Name= UserTypeOptions.Admin.ToString() };
+
+                       await _roleManager.CreateAsync(applicationUserRole);
+                    }
+
+                    //add the new user into admin role
+
+                   await _userManager.AddToRoleAsync(user,UserTypeOptions.Admin.ToString());
+                }
+                else
+                {
+                    ApplicationUserRole applicationUserRole = new ApplicationUserRole() { Name = UserTypeOptions.User.ToString() };
+
+                    await _roleManager.CreateAsync(applicationUserRole);
+                    await _userManager.AddToRoleAsync(user, UserTypeOptions.User.ToString());
+                }
+                    await _signInManager.SignInAsync(user, false);
 
                 return RedirectToAction("Index", "Home"); 
             }
@@ -134,6 +158,16 @@ namespace HeartsDesireLuxury.Controllers
 
                 if(keepmesignedin.Succeeded)
                 {
+                    ApplicationUser user = await _userManager.FindByEmailAsync(customerLogin.Email);
+                    
+                    if(user != null)
+                    {
+                        if(await _userManager.IsInRoleAsync(user,UserTypeOptions.Admin.ToString()))
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        }
+                    }
+
                     if(!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
                     {
                         return LocalRedirect(ReturnUrl);
@@ -149,7 +183,16 @@ namespace HeartsDesireLuxury.Controllers
 
                 if(result.Succeeded)
                 {
-                    if(!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                    ApplicationUser user = await _userManager.FindByEmailAsync(customerLogin.Email);
+
+                    if (user != null)
+                    {
+                        if (await _userManager.IsInRoleAsync(user, UserTypeOptions.Admin.ToString()))
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        }
+                    }
+                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
                 {
                     return LocalRedirect(ReturnUrl);
                 }
