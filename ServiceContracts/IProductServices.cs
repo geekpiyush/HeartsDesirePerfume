@@ -12,5 +12,7 @@ namespace ServiceContracts
         ProductResponse UpdateProduct(ProductUpdateRequest? productUpdateRequest);
 
        bool DeleteProduct(int? productID);
+        List<ProductResponse> GetProductsByCategoryID(int categoryID);
+
     }
 }

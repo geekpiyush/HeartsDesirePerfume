@@ -35,8 +35,8 @@ namespace ServiceContracts.DTO
             return new ProductResponse() { ProductID = products.ProductID, ProductName = products.ProductName, ProductPrice = products.ProductPrice, ProductSalePrice = products.ProductSalePrice, SkuID = products.SkuID, Stock = products.Stock, Description = products.Description, ShortDescription = products.ShortDescription,CategoryID = products.CategoryID,MainImagePath = products.MainImagePath,
                 ReferenceImagePaths = string.IsNullOrEmpty(products.ReferenceImages)
                 ? new List<string>()
-                : products.ReferenceImages.Split('\n').ToList()
-            };
+                : products.ReferenceImages.Split('\n').ToList(),Category = products.ProductCategory?.CategoryName
+    };
         }
     }
 }

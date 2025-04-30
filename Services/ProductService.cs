@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Entities.DB;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -90,7 +91,10 @@ namespace Services
 
         public List<ProductResponse> GetAllProducts()
         {
-          return _db.Products.Select(temp => temp.ToProductResponse()).ToList(); 
+          return _db.Products
+                  .Include(p => p.ProductCategory)
+                .Select(temp => temp.ToProductResponse())
+                .ToList(); 
         }
 
         public ProductResponse GetProductByProductID(int? personID)
@@ -156,6 +160,18 @@ namespace Services
 
             return true;
 
+        }
+
+        // get product by productCategoryID
+        public List<ProductResponse> GetProductsByCategoryID(int categoryID)
+        {
+            var products = _db.Products
+         .Include(p => p.ProductCategory)
+         .Where(p => p.CategoryID == categoryID)
+         .Select(p => p.ToProductResponse())
+         .ToList();
+
+            return products;
         }
     }
 }

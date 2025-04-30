@@ -29,6 +29,7 @@ namespace Entities
         public string? MainImagePath { get; set; }
         public string? ReferenceImages { get; set; }
         public int? CategoryID { get; set; }
+        public virtual ProductCategories? ProductCategory { get; set; }
 
     }
 }
