@@ -25,7 +25,9 @@ namespace HeartsDesirePerfume.Controllers
         }
         public IActionResult Men()
         {
-            return View();
+            List<ProductResponse> products =  _productServices.GetProductsByCategoryID(1);
+
+            return View(products);
         }
         public IActionResult Luxury()
         {

@@ -1,53 +1,57 @@
-﻿<link href="~/css/menCat.css" rel="stylesheet" />
+﻿@model IEnumerable<ProductResponse>
+
+<link href="~/css/menCat.css" rel="stylesheet" />
 
 <section class="responsive-banner">
     <div class="banner-content">
-        <h1>Be Remembered by Your Fragrance</h1>
+        <h1>Fragrance is the New Fashion</h1>
         <p>Explore our exclusive perfume collections</p>
     </div>
 </section>
 
 <section class="products-section">
     <div class="container-fluid">
-        <!-- Section Header -->
         <div class="section-header">
-            <h2>
-                <span class="active-tab">
-                    - Perfumes for both -
-                </span>
-            </h2>
+            <h2><span class="active-tab">- Perfumes for Her -</span></h2>
         </div>
 
-        <!-- Product Flexbox -->
         <div class="products-grid">
-            <!-- Card 1 -->
-            <div class="product-card">
-                <div class="badge bestseller">BESTSELLER</div>
-                <div class="badge discount">34% OFF</div>
-                <img src="~/images/022.png" alt="Luxury Perfume Gift Set">
-                <div class="product-info">
-                    <p class="category">GIFT SET FOR MEN</p>
-                    <h3>Luxury Perfume Gift Set</h3>
-                    <p class="rating">⭐ 4.7 | (1.2K Reviews)</p>
-                    <p class="price">₹565.00 <span class="old-price">₹849.00</span></p>
-                    <button class="add-to-cart">ADD TO CART</button>
-                </div>
-            </div>
+            @foreach (var product in Model)
+            {
+                <div class="product-card">
+                    <div class="badge bestseller">BESTSELLER</div>
 
-            <!-- Card 2 -->
-            <div class="product-card">
-                <div class="badge bestseller">BESTSELLER</div>
-                <div class="badge discount">45% OFF</div>
-                <img src="~/images/022.png" alt="CEO Man Perfume">
-                <div class="product-info">
-                    <p class="category">EAU DE PARFUM</p>
-                    <h3>CEO Man Perfume - 100ml</h3>
-                    <p class="rating">⭐ 4.8 | (754 Reviews)</p>
-                    <p class="price">₹499.00 <span class="old-price">₹899.00</span></p>
-                    <button class="add-to-cart">ADD TO CART</button>
+                    @if (product.ProductSalePrice.HasValue)
+                    {
+                        <div class="badge discount">
+                            @{
+                                var discount = (int)((1 - (product.ProductSalePrice.Value / product.ProductPrice)) * 100);
+                                @($"{discount}% OFF")
+                            }
+                        </div>
+                    }
+
+                    <img src="@product.MainImagePath" alt="@product.ProductName" />
+
+                    <div class="product-info">
+                        <p class="category">FOR HER</p> <!-- Static category -->
+                        <h3>@product.ProductName</h3>
+                        <p class="rating">⭐ 4.7 | (1.2K Reviews)</p> <!-- Static rating -->
+
+                        <p class="price">
+                            ₹@(product.ProductSalePrice ?? product.ProductPrice)
+                            @if (product.ProductSalePrice.HasValue)
+                            {
+                                <span class="old-price">₹@product.ProductPrice</span>
+                            }
+                        </p>
+
+                        <button class="add-to-cart">ADD TO CART</button> <!-- Static -->
+                    </div>
                 </div>
-            </div>
+            }
+        </div>
     </div>
-</div>
 </section>
+
 
