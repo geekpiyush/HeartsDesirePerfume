@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProductResponse>
+
+<link href="~/css/womencat.css" rel="stylesheet" />
+
+<section class="responsive-banner">
+    <div class="banner-content">
+        <h1>Fragrance is the New Fashion</h1>
+        <p>Explore our exclusive perfume collections</p>
+    </div>
+</section>
+
+<section class="products-section">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h2><span class="active-tab">- All Products -</span></h2>
+        </div>
+
+        <div class="products-grid">
+            @foreach (var product in Model)
+            {
+                <div class="product-card">
+                    <div class="badge bestseller">BESTSELLER</div>
+
+                    @if (product.ProductSalePrice.HasValue)
+                    {
+                        <div class="badge discount">
+                            @{
+                                var discount = (int)((1 - (product.ProductSalePrice.Value / product.ProductPrice)) * 100);
+                                @($"{discount}% OFF")
+                            }
+                        </div>
+                    }
+
+                    <img src="@product.MainImagePath" alt="@product.ProductName" />
+
+                    <div class="product-info">
+                        <p class="category">FOR HER</p> <!-- Static category -->
+                        <h3>@product.ProductName</h3>
+                        <p class="rating">⭐ 4.7 | (1.2K Reviews)</p> <!-- Static rating -->
+
+                        <p class="price">
+                            ₹@(product.ProductSalePrice ?? product.ProductPrice)
+                            @if (product.ProductSalePrice.HasValue)
+                            {
+                                <span class="old-price">₹@product.ProductPrice</span>
+                            }
+                        </p>
+
+                        <button class="add-to-cart">ADD TO CART</button> <!-- Static -->
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

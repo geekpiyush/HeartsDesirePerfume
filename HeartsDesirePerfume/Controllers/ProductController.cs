@@ -14,9 +14,10 @@ namespace HeartsDesirePerfume.Controllers
         {
             _productServices = productService;
         }
-        public IActionResult Index()
+        public IActionResult AllProducts()
         {
-            return View();
+           List<ProductResponse> products = _productServices.GetAllProducts();
+            return View(products);
         }
         public IActionResult Women()
         {
