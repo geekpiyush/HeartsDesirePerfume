@@ -1,0 +1,205 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #fafafa;
+    color: #333;
+}
+.one-perfume-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    min-height: 100vh;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 8rem;
+    justify-content:center;
+}
+
+.left {
+    flex: 1 1 50%;
+    padding: 40px;
+/*    background-color: #fff;*/
+}
+
+.right {
+    flex: 1 1 50%;
+    padding: 40px;
+    background-color: #fafafa;
+}
+
+.main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+/*    border: 1px solid #ccc;*/
+    margin-bottom: 20px;
+}
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+    .thumbnails img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border: 2px solid #ccc;
+        cursor: pointer;
+    }
+
+.product-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+.rating {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 10px;
+}
+.price {
+    font-size: 24px;
+    color: #d32f2f;
+    margin: 10px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #888;
+}
+
+.buy-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+    .features div {
+        background: #eee;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+.desc {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        flex: 1 1 100%;
+        padding: 20px;
+    }
+
+    .main-image {
+        height: 300px;
+    }
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+    .quantity button {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .quantity input {
+        width: 60px;
+        text-align: center;
+        font-size: 16px;
+        margin: 0 10px;
+    }
+
+.accordion-container{
+    display:flex;
+    justify-content:center;
+    padding-bottom:10rem;
+}
+.accordion-inner-container{
+    width:75%;
+}
+.accordion {
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    padding: 18px 50px 18px 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    position: relative;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+
+    .accordion::after {
+        content: "➕";
+        position: absolute;
+        right: 20px;
+        font-size: 18px;
+        transition: 0.3s;
+    }
+
+    .accordion.active::after {
+        content: "➖";
+    }
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #fff;
+    padding: 0 18px;
+    border-left: 3px solid #000;
+}
+
+    .panel p {
+        padding: 15px 0;
+        margin: 0;
+    }
+
+    .panel.open {
+        padding-top: 10px;
+    }

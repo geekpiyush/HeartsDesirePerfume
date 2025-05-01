@@ -9,10 +9,12 @@ h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
 }
+
+
 .video-banner {
     position: relative;
     width: 100%;
-    height: 100vh; /* Full screen */
+    height: 100vh;  Full screen 
     overflow: hidden;
 }
 
@@ -23,10 +25,10 @@ h1, h2, h3, h4 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; /* Video ko back pe le jaane ke liye */
+    z-index: -1;  Video ko back pe le jaane ke liye 
 }
 
-/* Overlay Content */
+ Overlay Content 
 .video-overlay {
     position: absolute;
     top: 50%;
@@ -63,7 +65,7 @@ h1, h2, h3, h4 {
         background: #d49900;
     }
 
-/* ✅ Mobile Responsive */
+ ✅ Mobile Responsive 
 @media (max-width: 768px) {
     .video-banner {
         height: 100vh;

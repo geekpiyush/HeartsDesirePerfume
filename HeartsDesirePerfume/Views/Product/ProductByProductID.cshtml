@@ -1,1 +1,89 @@
-﻿<h1>Product By Product ID</h1>
+﻿<link href="~/css/productbyproductidstyle.css" rel="stylesheet" />
+<div class="container">
+    <div class="one-perfume-container">
+    <div class="left">
+        <img id="mainImg" src="~/images/Product_image/product_img1.jpg" class="main-image" alt="Main Perfume Image" />
+        <div class="thumbnails">
+            <img src="~/images/Product_image/product_img1.jpg" onclick="changeImage(this.src)" />
+            <img src="~/images/Product_image/product_img2.jpg" onclick="changeImage(this.src)" />
+            <img src="~/images/Product_image/product_img3.jpg" onclick="changeImage(this.src)" />
+            <img src="~/images/Product_image/product_img4.jpg" onclick="changeImage(this.src)" />
+        </div>
+    </div>
+
+    <div class="right">
+        <h1 class="product-title">WHITE OUD Unisex - 100ml</h1>
+        <div class="price">₹575.00 <span class="old-price">₹999.00</span></div>
+            <div class="rating">⭐ 4.6 | 1071 Reviews</div>
+        <button class="buy-btn">Buy Now</button>
+
+            <div class="quantity">
+                <button onclick="changeQty(-1)">−</button>
+                <input type="number" id="qty" value="1" min="1" />
+                <button onclick="changeQty(1)">+</button>
+            </div>
+        
+        <div class="features">
+            <div>✅ Long Lasting</div>
+            <div>✅ IFRA Certified</div>
+            <div>✅ Imported Oils</div>
+            <div>✅ Made in India</div>
+        </div>
+
+        <div class="desc">
+            <h3>The Spice Odyssey</h3>
+            <p>Charmed by the tangy Artemisia Lemon at the top, delicately distinct freesias at its heart amidst the enchanting amber and musk base.</p>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="accordion-container">
+    <div class="accordion-inner-container">
+        <button class="accordion">KEY BENEFITS</button>
+        <div class="panel">
+        <p>
+                - IFRA-certified and Safe to Use on Skin<br />
+                - Long-lasting<br />
+                - Made with Imported Oils<br />
+            </p>
+        </div>
+
+        <button class="accordion">HOW TO USE</button>
+        <div class="panel">
+            <p>Spray the perfume on your pulse points such as sides of the neck and wrists for all day freshness.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeImage(src) {
+      document.getElementById('mainImg').src = src;
+    }
+
+    function changeQty(change) {
+      const qtyInput = document.getElementById("qty");
+      let value = parseInt(qtyInput.value);
+      value = isNaN(value) ? 1 : value + change;
+      if (value >= 1) {
+        qtyInput.value = value;
+      }
+    }
+
+    const accordions = document.querySelectorAll(".accordion");
+
+    accordions.forEach((accordion) => {
+      accordion.addEventListener("click", function () {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+          panel.classList.remove("open");
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.classList.add("open");
+        }
+      });
+    });
+</script>
