@@ -24,19 +24,7 @@ namespace HeartsDesireLuxury.Controllers
 
             return View(products);
         }
-        public IActionResult Women()
-        {
-            List<ProductResponse> products = _productServices.GetProductsByCategoryID(2);
-            return View(products);
-        }
-        public IActionResult Men()
-        {
-            return View();
-        }
-        public IActionResult Luxury()
-        {
-            return View();
-        }
+       
 
     }
 }
