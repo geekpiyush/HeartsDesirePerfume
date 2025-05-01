@@ -32,7 +32,16 @@ namespace HeartsDesirePerfume.Controllers
         }
         public IActionResult Luxury()
         {
-            return View();
+            List<ProductResponse> products = _productServices.GetProductsByCategoryID(4);
+            return View(products);
+        }
+
+        //fetch product accoridng to there ID
+        public IActionResult ProductByProductID(int productID)
+        {
+           var products = _productServices.GetProductByProductID(productID);   
+
+            return View(products);
         }
 
     }

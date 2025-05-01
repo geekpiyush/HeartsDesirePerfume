@@ -97,13 +97,13 @@ namespace Services
                 .ToList(); 
         }
 
-        public ProductResponse GetProductByProductID(int? personID)
+        public ProductResponse GetProductByProductID(int? productID)
         {
-            if(personID == null)
+            if(productID == null)
             {
                 return null;
             }
-           Products? products =  _db.Products.FirstOrDefault(temp => temp.ProductID == personID);
+           Products? products =  _db.Products.FirstOrDefault(temp => temp.ProductID == productID);
 
             if(products == null)
             {
