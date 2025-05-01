@@ -212,5 +212,49 @@ namespace HeartsDesireLuxury.Controllers
             return RedirectToAction("index", "Home");
         }
 
+        [HttpGet]
+        public IActionResult ForgetPassword()
+
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(CustomerUpdate customerUpdate)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(customerUpdate);
+            }
+
+            var user = await _userManager.FindByEmailAsync(customerUpdate.EmailID);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Email ID is not registered.");
+                return View(customerUpdate);
+            }
+
+            // Generate password reset token
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            // Reset the password using the token
+            var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, customerUpdate.Password!);
+
+            if (resetResult.Succeeded)
+            {
+                ViewBag.Message = "Password updated successfully.";
+                return RedirectToAction("index", "Home"); // redirect or show success message
+            }
+            else
+            {
+                foreach (var error in resetResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(customerUpdate);
+            }
+        }
+
+
     }
 }
