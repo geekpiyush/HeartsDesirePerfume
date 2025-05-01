@@ -29,37 +29,7 @@ namespace HeartsDesireLuxury.Controllers
         {
             return View();
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Register(CustomerRegister customerRegister)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ViewBag.Errors = ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage);
-        //        return View(customerRegister);
-        //    }
-
-        //    var existingUser = await _userManager.FindByEmailAsync(customerRegister.Email);
-        //    if (existingUser != null)
-        //    {
-        //        ModelState.AddModelError("Email", "This email is already registered");
-        //        return View(customerRegister);
-        //    }
-
-        //    // Generate OTP
-        //    var otp = new Random().Next(100000, 999999).ToString();
-
-        //    // TODO: Send OTP via SMS or Email (for now, store in TempData)
-        //    TempData["OTP"] = otp;
-        //    TempData["RegisterData"] = JsonConvert.SerializeObject(customerRegister);
-
-        //    // Send OTP via Fast2SMS
-        //    await _smsService.SendOtpAsync(customerRegister.Phone, otp);
-
-        //    return RedirectToAction("VerifyOtp");
-        //}
-
-         
+    
         [HttpPost]
         public async Task<IActionResult>Register(CustomerRegister customerRegister)
         {
@@ -176,8 +146,6 @@ namespace HeartsDesireLuxury.Controllers
                 }
 
             }
-
-
 
                 var result = await _signInManager.PasswordSignInAsync(customerLogin.Email, customerLogin.Password, isPersistent: false, lockoutOnFailure: false);
 

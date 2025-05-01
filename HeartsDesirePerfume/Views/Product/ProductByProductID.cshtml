@@ -1,19 +1,23 @@
-﻿<link href="~/css/productbyproductidstyle.css" rel="stylesheet" />
+﻿@model ProductResponse
+<link href="~/css/productbyproductidstyle.css" rel="stylesheet" />
 <div class="container">
     <div class="one-perfume-container">
     <div class="left">
-        <img id="mainImg" src="~/images/Product_image/product_img1.jpg" class="main-image" alt="Main Perfume Image" />
+        <img id="mainImg" src="@Model.MainImagePath" class="main-image" alt="Main Perfume Image" />
         <div class="thumbnails">
-            <img src="~/images/Product_image/product_img1.jpg" onclick="changeImage(this.src)" />
-            <img src="~/images/Product_image/product_img2.jpg" onclick="changeImage(this.src)" />
-            <img src="~/images/Product_image/product_img3.jpg" onclick="changeImage(this.src)" />
-            <img src="~/images/Product_image/product_img4.jpg" onclick="changeImage(this.src)" />
+                @if (Model.ReferenceImagePaths != null)
+                {
+                    foreach (var img in Model.ReferenceImagePaths)
+                    {
+                        <img src="@img" onclick="changeImage(this.src)" />
+                    }
+                }
         </div>
     </div>
 
     <div class="right">
-        <h1 class="product-title">WHITE OUD Unisex - 100ml</h1>
-        <div class="price">₹575.00 <span class="old-price">₹999.00</span></div>
+        <h1 class="product-title">@Model.ProductName</h1>
+        <div class="price">₹@Model.ProductSalePrice <span class="old-price">₹@Model.ProductPrice</span></div>
             <div class="rating">⭐ 4.6 | 1071 Reviews</div>
         <button class="buy-btn">Buy Now</button>
 
