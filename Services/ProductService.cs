@@ -173,5 +173,15 @@ namespace Services
 
             return products;
         }
+
+        public List<ProductResponse> GetTopProducts(int count)
+        {
+            return _db.Products
+                    .Include(p => p.ProductCategory)
+                    .OrderByDescending(p => p.ProductID)
+                    .Take(count)
+                    .Select(p => p.ToProductResponse())
+                    .ToList();
+        }
     }
 }

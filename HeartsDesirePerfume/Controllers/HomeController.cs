@@ -20,7 +20,7 @@ namespace HeartsDesireLuxury.Controllers
 
         public IActionResult Index()
         {
-            List<ProductResponse> products = _productServices.GetAllProducts();
+            List<ProductResponse> products = _productServices.GetTopProducts(4);
 
             return View(products);
         }
