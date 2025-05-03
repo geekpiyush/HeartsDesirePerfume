@@ -2,9 +2,9 @@
 <link href="~/css/productbyproductidstyle.css" rel="stylesheet" />
 <div class="container">
     <div class="one-perfume-container">
-    <div class="left">
-        <img id="mainImg" src="@Model.MainImagePath" class="main-image" alt="Main Perfume Image" />
-        <div class="thumbnails">
+        <div class="left">
+            <img id="mainImg" src="@Model.MainImagePath" class="main-image" alt="Main Perfume Image" />
+            <div class="thumbnails">
                 @if (Model.ReferenceImagePaths != null)
                 {
                     foreach (var img in Model.ReferenceImagePaths)
@@ -12,31 +12,48 @@
                         <img src="@img" onclick="changeImage(this.src)" />
                     }
                 }
+            </div>
         </div>
-    </div>
 
-    <div class="right">
-        <h1 class="product-title">@Model.ProductName</h1>
-        <div class="price">₹@Model.ProductSalePrice <span class="old-price">₹@Model.ProductPrice</span></div>
+        <div class="right">
+            <h1 class="product-title">@Model.ProductName</h1>
+            <div class="price">₹@Model.ProductSalePrice <span class="old-price">₹@Model.ProductPrice</span></div>
             <div class="rating">⭐ 4.6 | 1071 Reviews</div>
-        <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn">Buy Now</button>
 
             <div class="quantity">
                 <button onclick="changeQty(-1)">−</button>
                 <input type="number" id="qty" value="1" min="1" />
                 <button onclick="changeQty(1)">+</button>
             </div>
-        
-        <div class="features">
-            <div>✅ Long Lasting</div>
-            <div>✅ IFRA Certified</div>
-            <div>✅ Imported Oils</div>
-            <div>✅ Made in India</div>
-        </div>
 
-        <div class="desc">
-            <h3>The Spice Odyssey</h3>
-            <p>Charmed by the tangy Artemisia Lemon at the top, delicately distinct freesias at its heart amidst the enchanting amber and musk base.</p>
+            <div class="features">
+                <div>✅ Long Lasting</div>
+                <div>✅ IFRA Certified</div>
+                <div>✅ Imported Oils</div>
+                <div>✅ Made in India</div>
+            </div>
+
+            <div class="desc">
+                @if(Model.CategoryID == 4)
+                {
+                    <h3>Oriental Woody Floral, Spicy Accents</h3>
+
+                    <p>Charmed by saffron oil & cardamon oil at the top, floral & slighty sweet and musky at its heart deep woody & sweet-balsamic base.</p>
+                }
+
+                @if(Model.CategoryID == 2)
+                {
+                    <h3>Citrus Floral with Spicy and Woody Accents</h3>
+                    <p>Charmed by the fresh and slightly spicy opening at the top, slightly peppery & feminine core at its heart sensual and long-lasting base.</p>
+                }
+                @if(Model.CategoryID == 1)
+                {
+                    <h3>Woody Spicy</h3>
+
+                    <p>Charmed by the fresh citrus brust with a touch of floral brightness at the top, herbal-spicy accord adding sophistication and warmth at its heart smooth creamy woodiness that grounds the fragrance beautifully base.</p>
+                }
+            
         </div>
     </div>
     </div>
