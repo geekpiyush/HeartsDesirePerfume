@@ -14,5 +14,7 @@ namespace ServiceContracts
        bool DeleteProduct(int? productID);
         List<ProductResponse> GetProductsByCategoryID(int categoryID);
 
+        List<ProductResponse> GetTopProducts(int count);
+
     }
 }

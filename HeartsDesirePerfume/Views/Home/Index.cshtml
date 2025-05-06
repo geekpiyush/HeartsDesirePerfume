@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ProductResponse>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Hearts Desire Luxury - The Fragrance of India";
 }
 <link href="~/css/HomeStyle.css" rel="stylesheet" />
 <!-- 📽️ Video Banner -->
@@ -11,78 +11,45 @@
      </video>
  </section>
 
-    <section class="products-section">
-        <div class="container-fluid">
-            <!-- Section Header --> 
-            <div class="section-header">
-                <h2><span class="active-tab">BESTSELLERS</span></h2>
-            </div>
-
-            <!-- Product Grid -->
-            <div class="products-grid">
-                <!-- Card 1 -->
-                <div class="product-card">
-                    <div class="badge bestseller">BESTSELLER</div>
-                    <div class="badge discount">34% OFF</div>
-                    <img src="~/images/022.png" alt="Luxury Perfume Gift Set">
-                    <div class="product-info">
-                        <p class="category">GIFT SET FOR MEN</p>
-                        <h3>Luxury Perfume Gift Set</h3>
-                        <p class="rating">⭐ 4.7 | (1.2K Reviews)</p>
-                        <p class="price">₹565.00 <span class="old-price">₹849.00</span></p>
-                        <button class="add-to-cart">ADD TO CART</button>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="product-card">
-                    <div class="badge bestseller">BESTSELLER</div>
-                    <div class="badge discount">45% OFF</div>
-                    <img src="~/images/022.png" alt="CEO Man Perfume">
-                    <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3>CEO Man Perfume - 100ml</h3>
-                        <p class="rating">⭐ 4.8 | (754 Reviews)</p>
-                        <p class="price">₹499.00 <span class="old-price">₹899.00</span></p>
-                        <button class="add-to-cart">ADD TO CART</button>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="product-card">
-                    <div class="badge bestseller">BESTSELLER</div>
-                    <div class="badge discount">26% OFF</div>
-                    <img src="~/images/022.png" alt="Date Night Gift Set">
-                    <div class="product-info">
-                        <p class="category">GLAMOUR ESSENTIALS KIT</p>
-                        <h3>Date Night Gift Set</h3>
-                        <p class="rating">⭐ 4.7 | (38 Reviews)</p>
-                        <p class="price">₹599.00 <span class="old-price">₹799.00</span></p>
-                        <button class="add-to-cart">ADD TO CART</button>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="product-card">
-                    <div class="badge bestseller">BESTSELLER</div>
-                    <div class="badge offer">BUY 2 GET 2 FREE</div>
-                    <img src="~/images/022.png" alt="Kiss Proof Lipstick">
-                    <div class="product-info">
-                        <p class="category">OUR BEST-SELLING 4 LIP SHADES</p>
-                        <h3>Kiss Proof Liquid Lipstick</h3>
-                        <p class="rating">⭐ 4.7 | (25 Reviews)</p>
-                        <p class="price">₹699.00</p>
-                        <button class="add-to-cart">ADD TO CART</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- View All Button -->
-            <div class="view-all">
-            <button><a asp-action="AllProducts" asp-controller="Product">VIEW ALL</a></button>
-            </div>
+<section class="products-section">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h2><span class="active-tab">BESTSELLERS</span></h2>
         </div>
-    </section>
+
+        <div class="products-grid">
+            @foreach (var product in Model)
+            {
+                <div class="product-card">
+                    <div class="badge bestseller">BESTSELLER</div>
+                    <div class="badge discount">
+                        @if (product.ProductSalePrice.HasValue)
+                        {
+                            <div class="badge discount">
+                                @{
+                                    var discount = (int)((1 - (product.ProductSalePrice.Value / product.ProductPrice)) * 100);
+                                    @($"{discount}% OFF")
+                                }
+                            </div>
+                        }
+                    </div>
+                    <img src="@product.MainImagePath" alt="@product.ProductName" />
+                    <div class="product-info">
+                        <p class="category">@product.Category</p>
+                        <h3>@product.ProductName</h3>
+                        <p class="rating">⭐ 4.7 | (1.2K Reviews)</p>
+                        <p class="price">₹@product.ProductSalePrice <span class="old-price">₹@product.ProductPrice</span></p>
+                        <a asp-action="ProductByProductID" asp-controller="Product" asp-route-ProductID="@product.ProductID"><button class="add-to-cart">ADD TO CART</button></a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="view-all">
+            <button><a asp-action="AllProducts" asp-controller="Product">VIEW ALL</a></button>
+        </div>
+    </div>
+</section>
 
 <div class="premium-perfume-showcase">
     <div class="perfume-flex-container">
