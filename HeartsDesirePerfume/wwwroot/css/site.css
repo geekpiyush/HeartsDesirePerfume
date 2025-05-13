@@ -132,9 +132,6 @@ body {
 }
 
 /*Footer Code*/
-
-/* Luxury Footer Style */
-/* Luxury Footer Style */
 .luxury-footer {
     background: #0d0d0d;
     color: #d4af37;
@@ -142,6 +139,7 @@ body {
     font-family: 'Playfair Display', serif;
     position: relative;
     overflow: hidden;
+    display:inline-block;
 }
 
 .footer-container {

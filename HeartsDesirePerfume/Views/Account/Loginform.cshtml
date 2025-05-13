@@ -1,0 +1,60 @@
+﻿@model CustomerLogin
+<link href="~/css/accountcss/login.css" rel="stylesheet" />
+<div class="loginform-container">
+<div class="tab-container">
+    <div class="tab-header">
+        <button class="tab-button active" onclick="showForm('login')">Login</button>
+        <button class="tab-button" onclick="showForm('register')">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login" class="form active" asp-action="Login" asp-controller="Account" method="POST">
+        <h2>Login</h2>  
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" asp-for="Email" />
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter password" asp-for="Password" />
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="forgot-link"><a href="#">Forgot Password?</a></div>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register" class="form" asp-action="Register" asp-controller="Account" method="post">
+        <h2>Register</h2>
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter full name" required />
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter email" required />
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Create password" required />
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Confirm password" required />
+        </div>
+        <button type="submit" class="btn">Register</button>
+        <div class="forgot-link"><a href="#">Forgot Password?</a></div>
+    </form>
+</div>
+</div>
+<script>
+    function showForm(formId) {
+      const forms = document.querySelectorAll('.form');
+      const buttons = document.querySelectorAll('.tab-button');
+
+      forms.forEach(form => form.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(formId).classList.add('active');
+      event.target.classList.add('active');
+    }
+</script>

@@ -43,9 +43,7 @@
             {
                 <a href="#"><i class="fas fa-search"></i></a>
                 <span>@name</span>
-                <a href="#"><i class="fas fa-user"></i></a>
-
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a asp-controller="Account" asp-action="Loginform"><i class="fas fa-user"></i></a>
 
                 <a asp-action="OrderHistory" asp-controller="Account">Order History</a>
                 <a asp-action="logout" asp-controller="Account">Log out</a>
@@ -54,12 +52,7 @@
             {
                 <a href="#"><i class="fas fa-search"></i></a>
 
-                <a href="#"><i class="fas fa-user"></i></a>
-
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
-
-                <a asp-action="Login" asp-controller="Account">Login</a>
-                <a asp-action="Register" asp-controller="Account">Register</a>
+                <a asp-controller="Account" asp-action="Loginform"><i class="fas fa-user"></i></a>
             }
         </div>
 

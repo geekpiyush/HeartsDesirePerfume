@@ -24,7 +24,7 @@ namespace HeartsDesireLuxury.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Loginform()
 
         {
             return View();
@@ -103,13 +103,6 @@ namespace HeartsDesireLuxury.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-
         [HttpPost]
          public async Task<IActionResult> Login(CustomerLogin customerLogin,string? ReturnUrl)
          {
@@ -168,8 +161,8 @@ namespace HeartsDesireLuxury.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-            ModelState.AddModelError("Login", "Invalid Email or Password");
-            return View(customerLogin);
+            ModelState.AddModelError("Loginform", "Invalid Email or Password");
+            return View("Loginform",customerLogin);
 
         }
          
