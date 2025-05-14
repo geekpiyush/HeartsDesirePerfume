@@ -1,7 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ProductResponse
 @{
+    ViewBag.Title = "Checkout Page | Hearts Desire";
 }
 <link href="~/css/orders/orders.css" rel="stylesheet" />
 
@@ -52,17 +51,17 @@
         <h2>Your Order</h2>
         <div class="product-summary">
             <div class="product-item">
-                <img src="https://via.placeholder.com/100" alt="Perfume">
+                <img src="@Model.MainImagePath" alt="Perfume">
                 <div class="product-info">
-                    <h3>Royal Oud Perfume</h3>
+                    <h3>@Model.ProductName</h3>
                     <p>50ml Bottle</p>
-                    <strong>₹1,999</strong>
+                    <strong>₹@Model.ProductSalePrice</strong>
                 </div>
             </div>
 
             <div class="order-summary">
-                <p><span>Subtotal:</span> <span>₹1,999</span></p>
-                <p><span>Shipping:</span> <span>₹50</span></p>
+                <p><span>Subtotal:</span> <span>₹@Model.ProductSalePrice</span></p>
+                <p><span>Shipping:</span> <span>₹0</span></p>
                 <p><strong>Total:</strong> <strong>₹2,049</strong></p>
             </div>
 

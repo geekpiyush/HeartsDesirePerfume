@@ -18,10 +18,10 @@ namespace HeartsDesireLuxury.Controllers
             _productServices = productService;
         }
 
-        public IActionResult Orders()
+        public IActionResult Orders(int productID)
         {
-
-            return View();
+           var product =  _productServices.GetProductByProductID(productID);
+            return View(product);
         }
 
 

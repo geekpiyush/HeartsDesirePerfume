@@ -98,7 +98,7 @@ namespace HeartsDesireLuxury.Controllers
                     ModelState.AddModelError("Register", error.Description);
                 }
             }
-            return View(customerRegister);
+            return View("Index",customerRegister);
 
         }
 
@@ -161,7 +161,7 @@ namespace HeartsDesireLuxury.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-            ModelState.AddModelError("Loginform", "Invalid Email or Password");
+            ModelState.AddModelError("Login", "Invalid Email or Password");
             return View("Loginform",customerLogin);
 
         }
