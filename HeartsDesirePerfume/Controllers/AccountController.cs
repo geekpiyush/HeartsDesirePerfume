@@ -25,9 +25,15 @@ namespace HeartsDesireLuxury.Controllers
 
         [HttpGet]
         public IActionResult Loginform()
-
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
+
+                return View("Loginform");
+            }
+            var viewModel = new AccountLoginForm();
+            return View(viewModel);
         }
     
         [HttpPost]
@@ -37,14 +43,14 @@ namespace HeartsDesireLuxury.Controllers
             {
                 ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
 
-                return View(customerRegister);
+                return View("Loginform",customerRegister);
             }
 
             var existingUser = await _userManager.FindByEmailAsync(customerRegister.Email);
             if (existingUser != null)
             {
                 ModelState.AddModelError("Email", "This email is already registered");
-                return View(customerRegister);
+                return View("Loginform",customerRegister);
             }
 
             var existingPhoneNumber = await _userManager.Users.FirstOrDefaultAsync(temp => temp.PhoneNumber == customerRegister.Phone);
@@ -52,7 +58,7 @@ namespace HeartsDesireLuxury.Controllers
             if (existingPhoneNumber != null)
             {
                 ModelState.AddModelError("Phone", "Phone number already exist");
-                return View(customerRegister);
+                return View("Loginform",customerRegister);
             }
 
             ApplicationUser user = new ApplicationUser() { Email = customerRegister.Email, PhoneNumber = customerRegister.Phone, UserName = customerRegister.Email, CustomerName = customerRegister.CustomerName };
@@ -111,7 +117,7 @@ namespace HeartsDesireLuxury.Controllers
             {
                 ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
 
-                return View(customerLogin);
+                return View("Loginform",customerLogin);
             }
 
 
@@ -161,7 +167,7 @@ namespace HeartsDesireLuxury.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-            ModelState.AddModelError("Login", "Invalid Email or Password");
+            ModelState.AddModelError("Loginform", "Invalid Email or Password");
             return View("Loginform",customerLogin);
 
         }

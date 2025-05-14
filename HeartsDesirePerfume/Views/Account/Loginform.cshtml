@@ -1,4 +1,5 @@
-﻿@model CustomerLogin
+﻿@using Entities.Enums
+@model AccountLoginForm
 <link href="~/css/accountcss/login.css" rel="stylesheet" />
 <div class="loginform-container">
 <div class="tab-container">
@@ -8,15 +9,17 @@
     </div>
 
     <!-- Login Form -->
-    <form id="login" class="form active" asp-action="Login" asp-controller="Account" method="POST">
+    <form id="login" class="form active" asp-action="Login" asp-controller="Account" method="post">
         <h2>Login</h2>  
         <div class="form-group">
             <label>Email</label>
-            <input type="email" placeholder="Enter your email" asp-for="Email" />
+            <input type="email" placeholder="Enter your email" asp-for="Login.Email" />
+            <span asp-validation-for="Login.Email" style="color:red;"></span>
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" placeholder="Enter password" asp-for="Password" />
+            <input type="password" placeholder="Enter password" asp-for="Login.Password" />
+            <span asp-validation-for="Login.Password"></span>
         </div>
         <button type="submit" class="btn">Login</button>
         <div class="forgot-link"><a asp-action="ForgetPassword" asp-controller="Account">Forgot Password?</a></div>
@@ -27,30 +30,50 @@
         <h2>Register</h2>
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" placeholder="Enter full name" required />
+            <input type="text" placeholder="Enter full name" asp-for="Register.CustomerName" />
+            <span asp-validation-for="Register.CustomerName" style="color:red;"></span>
         </div>
         <div class="form-group">
 
             <label>Email</label>
-            <input type="email" placeholder="Enter email" required />
+            <input type="email" placeholder="Enter email" asp-for="Register.Email" />
+            <span asp-validation-for="Register.Email" style="color:red;"></span>
         </div>
-        @* <div class="form-group">
+        <div class="form-group">
                 <label>Phone</label>
-                <input type="email" placeholder="Enter Phone" required />
-            </div> *@
+                <input type="text" placeholder="Enter Phone" asp-for="Register.Phone" />
+                <span asp-validation-for="Register.Phone"></span>
+            </div>
+            <div class="form-group">
+                <label>User Type</label>
+                <select asp-for="Register.UserType" asp-items="Html.GetEnumSelectList<UserTypeOptions>()"></select>
+            </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" placeholder="Create password" required />
+            <input type="password" placeholder="Create password" asp-for="Register.Password" />
+            <span asp-validation-for="Register.Password"></span>
         </div>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input type="password" placeholder="Confirm password" required />
+            <input type="password" placeholder="Confirm password" asp-for="Register.ConfirmPassword" />
+            <span asp-validation-for="Register.ConfirmPassword"></span>
         </div>
         <button type="submit" class="btn">Register</button>
         <div class="forgot-link"><a asp-action="ForgetPassword" asp-controller="Account">Forgot Password?</a></div>
     </form>
 </div>
 </div>
+
+@if (ViewBag.errors != null)
+{
+    <div style="color:red;">
+        @foreach (string error in ViewBag.errors)
+        {
+            <li>@error</li>
+        }
+    </div>
+}
+
 <script>
     function showForm(formId) {
       const forms = document.querySelectorAll('.form');
@@ -63,3 +86,6 @@
       event.target.classList.add('active');
     }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
