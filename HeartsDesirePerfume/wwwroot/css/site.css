@@ -139,7 +139,7 @@ body {
     font-family: 'Playfair Display', serif;
     position: relative;
     overflow: hidden;
-    display:inline-block;
+    display:block;
 }
 
 .footer-container {

@@ -26,12 +26,6 @@ namespace HeartsDesireLuxury.Controllers
         [HttpGet]
         public IActionResult Loginform()
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
-
-                return View("Loginform");
-            }
             var viewModel = new AccountLoginForm();
             return View(viewModel);
         }
@@ -141,6 +135,7 @@ namespace HeartsDesireLuxury.Controllers
                     {
                         return LocalRedirect(ReturnUrl);
                     }
+
                     return RedirectToAction("index", "Home");
                 }
 
