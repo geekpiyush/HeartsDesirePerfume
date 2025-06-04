@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Luxury perfume brand in India - Hearts Desire Luxury";
 }
-
 <link href="~/css/skincareCat.css" rel="stylesheet" />
 
 <section class="responsive-banner">
@@ -39,7 +38,6 @@
                     }
 
                     <img src="@product.MainImagePath" alt="@product.ProductName" />
-
                     <div class="product-info">
                         <p class="category">UNISEX PERFUME</p>
                         <h3>@product.ProductName</h3>
@@ -52,13 +50,10 @@
                                 <span class="old-price">₹@product.ProductPrice</span>
                             }
                         </p>
-
                         <a asp-action="ProductByProductID" asp-controller="Product" asp-route-ProductID="@product.ProductID"><button class="add-to-cart">ADD TO CART</button></a>
                     </div>
                 </div>
             }
         </div>
-
     </div>
 </section>
-
