@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Hearts Desire Luxury - The Fragrance of India";
 }
-<link href="~/css/HomeStyle.css" rel="stylesheet" />
+<link href="~/css/HomeStyle.css" rel="stylesheet" asp-append-version="true"/>
 <!-- 📽️ Video Banner -->
  <section class="video-banner"> 
      <video id="banner-video" autoplay loop muted playsinline class="background-video"> 
@@ -51,22 +51,25 @@
     </div>
 </section>
 
-<div class="premium-perfume-showcase">
-    <div class="perfume-flex-container">
-        <!-- Left: Image -->
-        <div class="perfume-image-side">
-            <img src="/images/luxuryperfume.png" alt="Luxury Perfume">
-        </div>
-            <div class="perfume-content-side">
-                <h2>Unveil the Art of Fragrance</h2>
-                <p>
-                    Step into a world of elegance and refinement. Our signature scent embodies timeless sophistication,
-                    handcrafted with rare ingredients for the modern connoisseur.
-                </p>
-                <a href="#" class="perfume-shop-btn">Shop Now</a>
-            </div>
-</div>
-</div>
+@* <div class="premium-perfume-showcase">
+     <div class="perfume-flex-container">
+         <!-- Left: Image -->
+         <div class="perfume-image-side">
+             <img src="/images/luxuryperfume.png" alt="Luxury Perfume">
+         </div>
+             <div class="perfume-content-side"> 
+                 <h2>Unveil the Art of Fragrance</h2>
+                 <p>
+                     Step into a world of elegance and refinement. Our signature scent embodies timeless sophistication,
+                     handcrafted with rare ingredients for the modern connoisseur.
+                 </p> 
+                 <a href="#" class="perfume-shop-btn">Shop Now</a>
+             </div>
+ </div>
+ </div> *@
+<a href="https://example.com" class="banner-link" target="_blank">
+    <img src="~/images/banner/new banner HD.png" alt="Banner Image">
+</a>
 
 <section class="category-section">
   <div class="container-fluid">

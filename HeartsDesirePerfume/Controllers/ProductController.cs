@@ -34,6 +34,11 @@ namespace HeartsDesirePerfume.Controllers
             List<ProductResponse> products = _productServices.GetProductsByCategoryID(4);
             return View(products);
         }
+        public IActionResult Skincare()
+        {
+            List<ProductResponse> products = _productServices.GetProductsByCategoryID(4);
+            return View(products);
+        }
 
         //fetch product accoridng to there ID
         public IActionResult ProductByProductID(int productID)

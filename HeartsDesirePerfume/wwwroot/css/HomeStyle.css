@@ -306,8 +306,14 @@ h1, h2, h3, h4 {
         transform: scale(1.05);
     }
 
+.banner-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-size:cover;
+    padding:50px 0px;
+}
 /*Categories CSS Style*/
-
 .category-section {
     padding: 0px 20px;
     background-color: #fff;

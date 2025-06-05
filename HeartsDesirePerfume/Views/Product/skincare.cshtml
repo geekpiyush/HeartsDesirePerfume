@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProductResponse>
+@{
+    ViewData["Title"] = "Luxury perfume brand in India - Hearts Desire Luxury";
+}
+<link href="~/css/skincareCat.css" rel="stylesheet" />
+
+<section class="responsive-banner">
+    <div class="banner-content">
+        <h1>Reveal Your Natural Glow</h1>
+        <p>Healthy skin, Happy you</p>
+    </div>
+</section>
+
+<section class="products-section">
+    <div class="container-fluid">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2>
+                <span class="active-tab">
+                    - Skin Care For You -
+                </span>
+            </h2>
+        </div>
+        <div class="products-grid">
+            @foreach (var product in Model)
+            {
+                <div class="product-card">
+                    <div class="badge bestseller">BESTSELLER</div>
+
+                    @if (product.ProductSalePrice.HasValue)
+                    {
+                        <div class="badge discount">
+                            @{
+                                var discount = (int)((1 - (product.ProductSalePrice.Value / product.ProductPrice)) * 100);
+                                @($"{discount}% OFF")
+                            }
+                        </div>
+                    }
+
+                    <img src="@product.MainImagePath" alt="@product.ProductName" />
+                    <div class="product-info">
+                        <p class="category">UNISEX PERFUME</p>
+                        <h3>@product.ProductName</h3>
+                        <p class="rating">⭐ 4.7 | (1.2K Reviews)</p>
+
+                        <p class="price">
+                            ₹@(product.ProductSalePrice ?? product.ProductPrice)
+                            @if (product.ProductSalePrice.HasValue)
+                            {
+                                <span class="old-price">₹@product.ProductPrice</span>
+                            }
+                        </p>
+                        <a asp-action="ProductByProductID" asp-controller="Product" asp-route-ProductID="@product.ProductID"><button class="add-to-cart">ADD TO CART</button></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
